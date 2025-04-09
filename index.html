@@ -1,21 +1,63 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>ReFasionShop- Accueil</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReFashionShop - Vêtements de Luxe d'Occasion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <h1>Bienvenue sur le site de ReFashionShop</h1>
-  <p>Menu:</p>
-  <ul>
-    <li><a href="page1.html">Articles Hommes</a></li>
-    <li><a href="page2.html">Articles Femmes</a></li>
-    <li><a href="page3.html">Service après vente</a></li>
-  </ul>
-</body>
+    <header>
+        <div class="container">
+            <h1 class="logo">ReFashionShop</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Produits</a></li>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Vêtements de Luxe d'Occasion</h2>
+            <p>Le luxe à portée de main, avec une sélection unique de pièces rares et authentiques.</p>
+            <a href="#produits" class="btn">Explorer nos produits</a>
+        </div>
+    </section>
+
+    <section id="produits" class="products">
+        <div class="container">
+            <h2 class="section-title">Nos Produits</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="images/image1.jpg" alt="Vêtement 1">
+                    <div class="product-info">
+                        <h3>Robe de Créateur</h3>
+                        <p>Prix : 1200€</p>
+                        <a href="#" class="btn">Acheter</a>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <img src="images/image2.jpg" alt="Vêtement 2">
+                    <div class="product-info">
+                        <h3>Blazer en Cuir</h3>
+                        <p>Prix : 900€</p>
+                        <a href="#" class="btn">Acheter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ReFashionShop - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
 </html>
