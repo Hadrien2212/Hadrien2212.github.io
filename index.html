@@ -1,87 +1,110 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReFashionShop - Vêtements de Luxe d'Occasion</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refashionshop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .produits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .produit {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+
+    .produit:hover {
+      transform: scale(1.02);
+    }
+
+    .produit img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .produit h3 {
+      margin: 1rem;
+    }
+
+    .produit p {
+      margin: 0 1rem 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #eee;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo">ReFashionShop</h1>
-            <div class="cart">
-                🛒 <span id="cart-count">0</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Produits</a></li>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <h1>Refashionshop</h1>
+    <p>La mode de luxe, réinventée</p>
+  </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Vêtements de Luxe d'Occasion</h2>
-            <p>Le luxe à portée de main, avec une sélection unique de pièces rares et authentiques.</p>
-            <a href="#produits" class="btn">Explorer nos produits</a>
-            <img src="tshirtstone.jpeg" alt="T-shirt Stone Island">
-        </div>
-    </section>
+  <main>
+    <h2>Nos articles</h2>
+    <div class="produits">
+      <div class="produit">
+        <img src="https://via.placeholder.com/300x250?text=Sac+Chanel" alt="Sac Chanel">
+        <h3>Sac Chanel Classique</h3>
+        <p>État impeccable. 1 200€</p>
+      </div>
+      <div class="produit">
+        <img src="https://via.placeholder.com/300x250?text=Robe+Dior" alt="Robe Dior">
+        <h3>Robe Dior Édition Limitée</h3>
+        <p>Portée une seule fois. 890€</p>
+      </div>
+      <div class="produit">
+        <img src="https://via.placeholder.com/300x250?text=Manteau+Burberry" alt="Manteau Burberry">
+        <h3>Manteau Burberry</h3>
+        <p>Collection hiver. 650€</p>
+      </div>
+    </div>
+  </main>
 
-    <section id="produits" class="products">
-        <div class="container">
-            <h2 class="section-title">Nos Produits</h2>
-
-            <div class="filter-bar">
-                <label for="price-filter">Filtrer par prix :</label>
-                <select id="price-filter">
-                    <option value="all">Tous</option>
-                    <option value="low">Moins de 500€</option>
-                    <option value="mid">500€ - 1000€</option>
-                    <option value="high">Plus de 1000€</option>
-                </select>
-            </div>
-
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="images/image1.jpg" alt="Robe de créateur">
-                    <div class="product-info">
-                        <h3>Robe de Créateur</h3>
-                        <p>Prix : 1200€</p>
-                        <a href="#" class="btn add-to-cart">Ajouter au panier</a>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <img src="images/image2.jpg" alt="Blazer en cuir">
-                    <div class="product-info">
-                        <h3>Blazer en Cuir</h3>
-                        <p>Prix : 900€</p>
-                        <a href="#" class="btn add-to-cart">Ajouter au panier</a>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <img src="images/tshirt-stoneisland.jpg" alt="T-shirt Stone Island">
-                    <div class="product-info">
-                        <h3>T-shirt Stone Island</h3>
-                        <p>Prix : 250€</p>
-                        <a href="#" class="btn add-to-cart">Ajouter au panier</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 ReFashionShop - Tous droits réservés</p>
-        </div>
-    </footer>
-
-    <!-- Scripts panier et
-
+  <footer>
+    © 2025 Refashionshop. Tous droits réservés.
+  </footer>
+</body>
+</html>
