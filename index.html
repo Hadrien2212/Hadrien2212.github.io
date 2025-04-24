@@ -56,8 +56,6 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: 1px solid #e5e5e5;
-      display: flex;
-      flex-direction: column;
     }
 
     .produit:hover {
@@ -78,25 +76,27 @@
     }
 
     .produit p {
-      margin: 0 1rem 1rem;
+      margin: 0 1rem 1.5rem;
       font-weight: 500;
       color: #555;
     }
 
-    .btn-panier {
-      margin: 0 1rem 1.5rem;
-      padding: 0.6rem 1rem;
-      border: none;
+    .btn-ajouter {
+      display: block;
       background-color: #d4af37;
       color: white;
-      font-weight: bold;
-      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      text-align: center;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
+      margin: 0 1rem 1.5rem;
       transition: background-color 0.3s;
     }
 
-    .btn-panier:hover {
-      background-color: #b9982e;
+    .btn-ajouter:hover {
+      background-color: #b28a27;
     }
 
     footer {
@@ -120,24 +120,25 @@
     <h2>Nos Sélections Élégantes</h2>
     <div class="produits">
       <div class="produit">
-        <img src="https://cdn.pixabay.com/photo/2016/11/22/07/09/bag-1845541_1280.jpg" alt="Sac Chanel">
+        <!-- Image correspondant à l'article -->
+        <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Sac+Chanel" alt="Sac Chanel">
         <h3>Sac Chanel Classique</h3>
-        <p>1 200€</p>
-        <button class="btn-panier" onclick="ajouterAuPanier('Sac Chanel Classique', '1 200€')">Ajouter au panier</button>
+        <p>État impeccable - 1 200€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
       </div>
-
       <div class="produit">
-        <img src="https://cdn.pixabay.com/photo/2020/02/21/08/52/woman-4866815_1280.jpg" alt="Robe Dior">
+        <!-- Image correspondant à l'article -->
+        <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Robe+Dior" alt="Robe Dior">
         <h3>Robe Dior Soirée</h3>
-        <p>890€</p>
-        <button class="btn-panier" onclick="ajouterAuPanier('Robe Dior Soirée', '890€')">Ajouter au panier</button>
+        <p>Édition limitée - 890€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
       </div>
-
       <div class="produit">
-        <img src="https://cdn.pixabay.com/photo/2019/12/09/13/59/people-4684080_1280.jpg" alt="Manteau Burberry">
+        <!-- Image correspondant à l'article -->
+        <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Manteau+Burberry" alt="Manteau Burberry">
         <h3>Manteau Burberry Hiver</h3>
-        <p>650€</p>
-        <button class="btn-panier" onclick="ajouterAuPanier('Manteau Burberry Hiver', '650€')">Ajouter au panier</button>
+        <p>En laine - 650€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
       </div>
     </div>
   </main>
@@ -148,11 +149,13 @@
 
   <script>
     function ajouterAuPanier(nom, prix) {
-      let panier = JSON.parse(localStorage.getItem('panier')) || [];
-      panier.push({ nom: nom, prix: prix });
-      localStorage.setItem('panier', JSON.stringify(panier));
-      window.location.href = "panier.html";
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.push({ name: nom, price: prix });
+      localStorage.setItem('cart', JSON.stringify(panier));
+      alert(`${nom} a été ajouté au panier !`);
     }
   </script>
+
 </body>
 </html>
+
