@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Refashionshop</title>
+  <title>Panier - Refashionshop</title>
   <style>
     body {
       margin: 0;
@@ -50,75 +50,8 @@
       color: #f5f5f5;
     }
 
-    .panier-lien {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 1rem;
-      color: #d4af37;
-      text-decoration: none;
-      background-color: #222;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      transition: background-color 0.3s;
-    }
-
-    .panier-lien:hover {
-      background-color: #333;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 4rem 1.5rem;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .produits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-    }
-
-    .produit {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #e5e5e5;
-    }
-
-    .produit:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .produit img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
-
-    .produit h3 {
-      margin: 1.5rem;
-      font-size: 1.3rem;
-      color: #1a1a1a;
-    }
-
-    .produit p {
-      margin: 0 1.5rem 2rem;
-      font-weight: 500;
-      color: #555;
-    }
-
-    .btn-ajouter {
-      display: block;
+    .btn-retour-boutique {
+      display: inline-block;
       background-color: #d4af37;
       color: white;
       padding: 0.8rem 1.7rem;
@@ -127,11 +60,12 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin: 0 1.5rem 2rem;
+      margin-top: 2rem;
+      text-decoration: none;
       transition: background-color 0.3s;
     }
 
-    .btn-ajouter:hover {
+    .btn-retour-boutique:hover {
       background-color: #b28a27;
     }
 
@@ -144,85 +78,39 @@
       font-size: 1rem;
     }
 
-    #histoire {
-      background-color: #fffbe6;
+    #panier-contenu {
       padding: 4rem 1.5rem;
       font-size: 1.1rem;
       line-height: 1.8;
       margin-top: 4rem;
+      max-width: 900px;
+      margin: auto;
     }
 
-    #contact {
-      padding: 4rem 1.5rem;
-      background-color: #f4f0ea;
-      margin-top: 4rem;
-    }
   </style>
 </head>
 <body>
 
   <header>
     <div class="menu-gauche">
-      <a href="#articles">Articles</a>
+      <a href="index.html">Articles</a>
       <a href="#histoire">Notre Histoire</a>
       <a href="#contact">Nous Contacter</a>
     </div>
-    <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
     <h1>Refashionshop</h1>
     <p>Vêtements de luxe d'occasion</p>
   </header>
 
-  <main id="articles">
-    <h2>Nos Sélections Élégantes</h2>
-    <div class="produits">
+  <section id="panier-contenu">
+    <h2 style="text-align:center; font-size:2.5rem; margin-bottom:3rem;">Votre Panier</h2>
 
-      <div class="produit">
-        <img src="https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg" alt="Sac Chanel Classique">
-        <h3>Sac Chanel Classique</h3>
-        <p>État impeccable - 1 200€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
-      </div>
-
-      <div class="produit">
-        <img src="https://media.1robepour1soir.com/product/1600x2400/robe-longue-dior-dream.jpg" alt="Robe Dior Soirée">
-        <h3>Robe Dior Soirée</h3>
-        <p>Édition limitée - 890€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
-      </div>
-
-      <div class="produit">
-        <img src="https://cdn.jolicloset.com/img/items/2023/01/15/1753178/large/burberry-manteau-en-laine-beige.jpg" alt="Manteau Burberry Hiver">
-        <h3>Manteau Burberry Hiver</h3>
-        <p>En laine - 650€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
-      </div>
-
+    <div id="panier-items">
+      <!-- Liste des produits dans le panier -->
     </div>
-  </main>
 
-  <section id="histoire">
-    <h2 style="text-align:center; font-size:2.5rem; color:#1a1a1a; margin-bottom:3rem;">Notre Histoire</h2>
-    <p style="max-width: 900px; margin: auto; color: #333;">
-      Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète. Fondée en 2025 par un duo d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée comme une référence pour tous ceux qui souhaitent allier style et conscience écologique.
-      <br><br>
-      Dès nos débuts, nous avons été animés par une volonté simple mais ambitieuse : offrir une seconde vie aux trésors de la haute couture. Trop souvent, des pièces d’exception sont reléguées au fond d’un dressing ou jetées alors qu’elles ont encore tant à offrir. Nous avons voulu leur redonner l’éclat qu’elles méritent.
-      <br><br>
-      Chaque article sélectionné sur Refashionshop est rigoureusement authentifié, inspecté et restauré si nécessaire. Nous collaborons avec des experts du luxe et des stylistes afin de vous garantir des vêtements et accessoires à la fois élégants, durables et porteurs d’une histoire unique.
-      <br><br>
-      Mais Refashionshop, c’est aussi une communauté. Une famille de passionnés qui croient que la mode ne doit plus être synonyme de gaspillage. Nous croyons en une consommation plus réfléchie, en une élégance responsable, en des choix durables.
-      <br><br>
-      Notre engagement ne s'arrête pas à la vente : nous soutenons des actions solidaires, promouvons la réparation, le don et la valorisation des savoir-faire artisanaux. Parce que chaque pièce de luxe mérite une seconde chance, et chaque client mérite de porter une histoire.
-      <br><br>
-      Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
-    </p>
-  </section>
-
-  <section id="contact">
-    <h2 style="text-align:center;">Nous Contacter</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      Une question, une suggestion ou une collaboration ?<br/>
-      Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
-    </p>
+    <div style="text-align: center;">
+      <a href="index.html" class="btn-retour-boutique">Retour à la Boutique</a>
+    </div>
   </section>
 
   <footer>
@@ -230,23 +118,29 @@
   </footer>
 
   <script>
-    function ajouterAuPanier(nom, prix) {
+    // Fonction pour récupérer les éléments du panier depuis localStorage et afficher le contenu
+    function afficherPanier() {
       let panier = JSON.parse(localStorage.getItem('cart')) || [];
-      panier.push({ nom: nom, prix: prix });
-      localStorage.setItem('cart', JSON.stringify(panier));
-      majCompteurPanier();
-      alert(`${nom} a été ajouté au panier !`);
+      const panierItems = document.getElementById('panier-items');
+      
+      if (panier.length === 0) {
+        panierItems.innerHTML = '<p style="text-align:center;">Votre panier est vide.</p>';
+      } else {
+        panierItems.innerHTML = '';
+        panier.forEach(item => {
+          const divItem = document.createElement('div');
+          divItem.innerHTML = `
+            <p><strong>${item.nom}</strong> - ${item.prix}€</p>
+          `;
+          panierItems.appendChild(divItem);
+        });
+      }
     }
 
-    function majCompteurPanier() {
-      const compteur = document.getElementById('cart-count');
-      const panier = JSON.parse(localStorage.getItem('cart')) || [];
-      compteur.textContent = panier.length;
-    }
-
-    document.addEventListener('DOMContentLoaded', majCompteurPanier);
+    document.addEventListener('DOMContentLoaded', afficherPanier);
   </script>
 
 </body>
 </html>
+
 
