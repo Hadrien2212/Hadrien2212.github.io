@@ -1,4 +1,3 @@
-Vous avez dit :
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -232,7 +231,24 @@ Vous avez dit :
 
   <script>
     function ajouterAuPanier(nom, prix) {
-      let panier = JSON.parse(localStorage.get
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.push({ nom: nom, prix: prix });
+      localStorage.setItem('cart', JSON.stringify(panier));
+      mettreAJourCompteur();
+      alert(`${nom} a été ajouté au panier !`);
+    }
+
+    function mettreAJourCompteur() {
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').textContent = panier.length;
+    }
+
+    document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
+  </script>
+
+</body>
+</html>
+
                               
 
 
