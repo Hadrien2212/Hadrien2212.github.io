@@ -191,15 +191,12 @@
       const totalPanier = document.getElementById('total-panier');
       let total = 0;
 
-      console.log('Contenu du panier:', panier);  // Log pour déboguer
-
-      panierItems.innerHTML = ''; // Vider le contenu actuel du panier
-
+      panierItems.innerHTML = '';
+      
       if (panier.length === 0) {
         panierItems.innerHTML = '<p style="text-align:center;">Votre panier est vide.</p>';
       } else {
         panier.forEach((item, index) => {
-          console.log('Article dans le panier:', item); // Log pour déboguer
           const divItem = document.createElement('div');
           divItem.classList.add('panier-item');
           divItem.innerHTML = `
@@ -223,25 +220,11 @@
       afficherPanier(); // Actualiser l'affichage du panier
     }
 
-    // Ajouter un article au panier (exemple pour tester)
-    function ajouterAuPanier() {
-      let panier = JSON.parse(localStorage.getItem('cart')) || [];
-      panier.push({
-        nom: 'Veste en cuir', 
-        prix: 150
-      });
-      localStorage.setItem('cart', JSON.stringify(panier));
-      afficherPanier(); // Actualiser après ajout
-    }
-
-    // Appel de la fonction au chargement de la page
     document.addEventListener('DOMContentLoaded', afficherPanier);
-
-    // Pour tester l'ajout d'un article :
-    // ajouterAuPanier(); // Décommente cette ligne pour ajouter un article au panier pour tester.
   </script>
 
 </body>
 </html>
+
 
 
