@@ -3,64 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Panier - Refashionshop</title>
+  <title>Votre Panier - Refashionshop</title>
   <style>
     body {
       font-family: 'Georgia', serif;
-      background-color: #f4f0ea;
+      background-color: #f8f5f0;
       margin: 0;
       padding: 0;
+      color: #1a1a1a;
     }
 
     header {
       background-color: #111;
       color: #d4af37;
-      padding: 2rem;
+      padding: 2.5rem 1rem;
       text-align: center;
     }
 
-    h1 {
+    header h1 {
+      font-size: 2.8rem;
       margin: 0;
+      letter-spacing: 1px;
     }
 
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
-      padding: 2rem;
+      padding: 2.5rem 1.5rem;
     }
 
     .item {
       background: white;
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border: 1px solid #eaeaea;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    .item span:first-child {
+      font-weight: bold;
     }
 
     .total {
-      font-weight: bold;
+      font-size: 1.4rem;
       text-align: right;
+      font-weight: bold;
       margin-top: 2rem;
-      font-size: 1.2rem;
+      color: #111;
     }
 
     .btn-retour {
-      margin-top: 2rem;
-      display: block;
-      text-align: center;
-      text-decoration: none;
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 0.9rem 1.8rem;
       background-color: #d4af37;
       color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 6px;
       font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1rem;
       transition: background-color 0.3s;
     }
 
     .btn-retour:hover {
       background-color: #b9982e;
+    }
+
+    .empty-message {
+      text-align: center;
+      font-style: italic;
+      margin-top: 2rem;
+      color: #777;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #111;
+      color: #ccc;
+      margin-top: 3rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -71,8 +99,12 @@
   </header>
 
   <main id="panier-container">
-    <!-- Les articles s'affichent ici dynamiquement -->
+    <!-- JS va insérer les articles ici -->
   </main>
+
+  <footer>
+    © 2025 Refashionshop — Élégance & Seconde Vie
+  </footer>
 
   <script>
     const container = document.getElementById('panier-container');
@@ -81,7 +113,12 @@
     let total = 0;
 
     if (panier.length === 0) {
-      container.innerHTML = "<p>Votre panier est vide.</p><a class='btn-retour' href='index.html'>Retour à la boutique</a>";
+      container.innerHTML = `
+        <p class="empty-message">Votre panier est vide.</p>
+        <div style="text-align:center">
+          <a class="btn-retour" href="index.html">Retour à la boutique</a>
+        </div>
+      `;
     } else {
       panier.forEach(item => {
         const div = document.createElement('div');
