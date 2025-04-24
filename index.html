@@ -3,156 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Refashionshop</title>
+  <title>Panier - Refashionshop</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      padding: 2rem;
+      background-color: #fafafa;
       color: #333;
     }
 
-    header {
-      background-color: #111;
-      color: white;
-      padding: 2rem;
+    h1 {
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    ul {
+      list-style-type: none;
+      padding: 0;
     }
 
-    header p {
-      margin-top: 0.5rem;
-      font-style: italic;
-    }
-
-    main {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .produits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .produit {
+    li {
       background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
-    }
-
-    .produit:hover {
-      transform: scale(1.02);
-    }
-
-    .produit img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    .produit h3 {
-      margin: 1rem;
-    }
-
-    .produit p {
-      margin: 0 1rem 1rem;
-    }
-
-    .produit button {
-      margin: 0 1rem 1rem;
-      padding: 10px 15px;
-      background-color: #111;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .produit button:hover {
-      background-color: #444;
-    }
-
-    footer {
-      text-align: center;
       padding: 1rem;
-      background-color: #eee;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: right;
       margin-top: 2rem;
+    }
+
+    .back {
+      display: block;
+      margin-top: 2rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Refashionshop</h1>
-    <p>La mode de luxe, réinventée</p>
-    <p><a href="panier.html" style="color: white; text-decoration: underline;">Voir le panier</a> 🛒 <span id="cart-count">0</span></p>
-  </header>
+  <h1>Mon Panier 🛒</h1>
+  <ul id="cart-items"></ul>
+  <div class="total" id="cart-total">Total : 0€</div>
+  <a class="back" href="index.html">← Retour à la boutique</a>
 
-  <main>
-    <h2>Nos articles</h2>
-    <div class="produits">
-      <div class="produit">
-        <img src="https://via.placeholder.com/300x250?text=Sac+Chanel" alt="Sac Chanel">
-        <h3>Sac Chanel Classique</h3>
-        <p>État impeccable. 1 200€</p>
-        <button class="add-to-cart" data-name="Sac Chanel Classique" data-price="1200">Ajouter au panier</button>
-      </div>
-      <div class="produit">
-        <img src="https://via.placeholder.com/300x250?text=Robe+Dior" alt="Robe Dior">
-        <h3>Robe Dior Édition Limitée</h3>
-        <p>Portée une seule fois. 890€</p>
-        <button class="add-to-cart" data-name="Robe Dior Édition Limitée" data-price="890">Ajouter au panier</button>
-      </div>
-      <div class="produit">
-        <img src="https://via.placeholder.com/300x250?text=Manteau+Burberry" alt="Manteau Burberry">
-        <h3>Manteau Burberry</h3>
-        <p>Collection hiver. 650€</p>
-        <button class="add-to-cart" data-name="Manteau Burberry" data-price="650">Ajouter au panier</button>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    © 2025 Refashionshop. Tous droits réservés.
-  </footer>
-
-  <!-- Script pour gérer le panier -->
   <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const list = document.getElementById('cart-items');
+    const totalDisplay = document.getElementById('cart-total');
+    let total = 0;
 
-    function updateCartCount() {
-      document.getElementById('cart-count').textContent = cart.length;
-    }
-
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', function () {
-        const name = this.dataset.name;
-        const price = parseInt(this.dataset.price);
-        cart.push({ name, price });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-
-        this.textContent = "Ajouté !";
-        this.style.backgroundColor = "#28a745";
-        setTimeout(() => {
-          this.textContent = "Ajouter au panier";
-          this.style.backgroundColor = "#111";
-        }, 1000);
+    if (cart.length === 0) {
+      list.innerHTML = "<li>Votre panier est vide.</li>";
+    } else {
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - ${item.price}€`;
+        list.appendChild(li);
+        total += item.price;
       });
-    });
-
-    updateCartCount();
+      totalDisplay.textContent = `Total : ${total}€`;
+    }
   </script>
 </body>
 </html>
+
 
