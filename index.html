@@ -15,8 +15,9 @@
     header {
       background-color: #111;
       color: #d4af37;
-      padding: 2.5rem 1rem;
+      padding: 2.5rem 1rem 2rem;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
@@ -29,6 +30,23 @@
       font-style: italic;
       margin-top: 0.5rem;
       color: #f5f5f5;
+    }
+
+    .panier-lien {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 1rem;
+      color: #d4af37;
+      text-decoration: none;
+      background-color: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .panier-lien:hover {
+      background-color: #333;
     }
 
     main {
@@ -112,6 +130,7 @@
 <body>
 
   <header>
+    <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
     <h1>Refashionshop</h1>
     <p>Vêtements de luxe d'occasion</p>
   </header>
@@ -150,11 +169,21 @@
       panier.push({ name: nom, price: prix });
       localStorage.setItem('cart', JSON.stringify(panier));
       alert(`${nom} a été ajouté au panier !`);
+      mettreAJourCompteur();
     }
+
+    function mettreAJourCompteur() {
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').textContent = panier.length;
+    }
+
+    // Mettre à jour le compteur au chargement de la page
+    window.onload = mettreAJourCompteur;
   </script>
 
 </body>
 </html>
+
 
 
 
