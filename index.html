@@ -191,11 +191,13 @@
       const totalPanier = document.getElementById('total-panier');
       let total = 0;
 
-      // Si le panier est vide
+      // Vérifie si le panier est vide
       if (panier.length === 0) {
         panierItems.innerHTML = '<p style="text-align:center;">Votre panier est vide.</p>';
       } else {
-        panierItems.innerHTML = ''; // Vider le panier avant de le remplir
+        panierItems.innerHTML = '';  // On vide l'élément panier avant d'ajouter les items
+
+        // Affichage des articles dans le panier
         panier.forEach((item, index) => {
           const divItem = document.createElement('div');
           divItem.classList.add('panier-item');
@@ -204,23 +206,22 @@
             <button class="btn-supprimer" onclick="supprimerDuPanier(${index})">Supprimer</button>
           `;
           panierItems.appendChild(divItem);
-          total += item.prix;
+          total += item.prix;  // Ajoute le prix au total
         });
       }
 
-      // Affichage du total
+      // Affichage du total du panier
       totalPanier.innerHTML = `<strong>Total : ${total}€</strong>`;
     }
 
     // Fonction pour supprimer un article du panier
     function supprimerDuPanier(index) {
       let panier = JSON.parse(localStorage.getItem('cart')) || [];
-      panier.splice(index, 1); // Supprimer l'élément à l'index donné
-      localStorage.setItem('cart', JSON.stringify(panier)); // Mettre à jour localStorage
-      afficherPanier(); // Rafraîchir l'affichage
+      panier.splice(index, 1); // Retirer l'article à l'index spécifié
+      localStorage.setItem('cart', JSON.stringify(panier)); // Mettre à jour le panier dans localStorage
+      afficherPanier(); // Actualiser l'affichage du panier
     }
 
-    // Appeler la fonction au chargement de la page
     document.addEventListener('DOMContentLoaded', afficherPanier);
   </script>
 
