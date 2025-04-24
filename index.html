@@ -120,21 +120,18 @@
     <h2>Nos Sélections Élégantes</h2>
     <div class="produits">
       <div class="produit">
-        <!-- Image correspondant à l'article -->
         <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Sac+Chanel" alt="Sac Chanel">
         <h3>Sac Chanel Classique</h3>
         <p>État impeccable - 1 200€</p>
         <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
       </div>
       <div class="produit">
-        <!-- Image correspondant à l'article -->
         <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Robe+Dior" alt="Robe Dior">
         <h3>Robe Dior Soirée</h3>
         <p>Édition limitée - 890€</p>
         <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
       </div>
       <div class="produit">
-        <!-- Image correspondant à l'article -->
         <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Manteau+Burberry" alt="Manteau Burberry">
         <h3>Manteau Burberry Hiver</h3>
         <p>En laine - 650€</p>
@@ -152,10 +149,10 @@
       let panier = JSON.parse(localStorage.getItem('cart')) || [];
       panier.push({ name: nom, price: prix });
       localStorage.setItem('cart', JSON.stringify(panier));
-      alert(`${nom} a été ajouté au panier !`);
+      alert(${nom} a été ajouté au panier !);
     }
   </script>
 
 </body>
-</html>
+</html> 
 
