@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Panier - Refashionshop</title>
   <style>
     body {
@@ -27,6 +27,9 @@
       margin-bottom: 1rem;
       border: 1px solid #ddd;
       border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .total {
@@ -36,10 +39,26 @@
       margin-top: 2rem;
     }
 
-    .back {
-      display: block;
+    .back,
+    .vider-panier,
+    .commander {
+      display: inline-block;
       margin-top: 2rem;
-      text-align: center;
+      padding: 10px 15px;
+      background-color: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .supprimer {
+      background-color: crimson;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -47,25 +66,63 @@
   <h1>Mon Panier 🛒</h1>
   <ul id="cart-items"></ul>
   <div class="total" id="cart-total">Total : 0€</div>
+
   <a class="back" href="index.html">← Retour à la boutique</a>
+  <button class="vider-panier" onclick="viderPanier()">Vider le panier</button>
+  <button class="commander" onclick="passerCommande()">Commander</button>
 
   <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const list = document.getElementById('cart-items');
     const totalDisplay = document.getElementById('cart-total');
-    let total = 0;
 
-    if (cart.length === 0) {
-      list.innerHTML = "<li>Votre panier est vide.</li>";
-    } else {
-      cart.forEach(item => {
+    function renderCart() {
+      list.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        list.innerHTML = "<li>Votre panier est vide.</li>";
+        totalDisplay.textContent = "Total : 0€";
+        return;
+      }
+
+      cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.textContent = `${item.name} - ${item.price}€`;
+        li.innerHTML = `${item.name} - ${item.price}€
+          <button class="supprimer" onclick="supprimerArticle(${index})">Supprimer</button>`;
         list.appendChild(li);
         total += item.price;
       });
+
       totalDisplay.textContent = `Total : ${total}€`;
     }
+
+    function supprimerArticle(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function viderPanier() {
+      if (confirm("Êtes-vous sûr de vouloir vider le panier ?")) {
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    function passerCommande() {
+      if (cart.length === 0) {
+        alert("Votre panier est vide.");
+        return;
+      }
+      alert("Merci pour votre commande ! (simulation)");
+      cart = [];
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
   </script>
 </body>
 </html>
