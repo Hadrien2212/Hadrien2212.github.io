@@ -81,6 +81,24 @@
       color: #555;
     }
 
+    .btn-ajouter {
+      display: block;
+      background-color: #d4af37;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      text-align: center;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 1rem 1.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn-ajouter:hover {
+      background-color: #b28a27;
+    }
+
     footer {
       text-align: center;
       background: #111;
@@ -105,16 +123,19 @@
         <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Sac+Chanel" alt="Sac Chanel">
         <h3>Sac Chanel Classique</h3>
         <p>État impeccable - 1 200€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
       </div>
       <div class="produit">
         <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Robe+Dior" alt="Robe Dior">
         <h3>Robe Dior Soirée</h3>
         <p>Édition limitée - 890€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
       </div>
       <div class="produit">
         <img src="https://via.placeholder.com/400x280/ffffff/000000?text=Manteau+Burberry" alt="Manteau Burberry">
         <h3>Manteau Burberry Hiver</h3>
         <p>En laine - 650€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
       </div>
     </div>
   </main>
@@ -122,6 +143,15 @@
   <footer>
     © 2025 Refashionshop — Élégance & Seconde Vie
   </footer>
+
+  <script>
+    function ajouterAuPanier(nom, prix) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.push({ name: nom, price: prix });
+      localStorage.setItem('cart', JSON.stringify(panier));
+      alert(`${nom} a été ajouté au panier !`);
+    }
+  </script>
 
 </body>
 </html>
