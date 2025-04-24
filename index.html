@@ -199,17 +199,17 @@
         panier.forEach((item, index) => {
           const divItem = document.createElement('div');
           divItem.classList.add('panier-item');
-          divItem.innerHTML = `
+          divItem.innerHTML = 
             <p><strong>${item.nom}</strong> - ${item.prix}€</p>
             <button class="btn-supprimer" onclick="supprimerDuPanier(${index})">Supprimer</button>
-          `;
+          ;
           panierItems.appendChild(divItem);
           total += item.prix;
         });
       }
 
       // Affichage du total du panier
-      totalPanier.innerHTML = `<strong>Total : ${total}€</strong>`;
+      totalPanier.innerHTML = <strong>Total : ${total}€</strong>;
     }
 
     // Fonction pour supprimer un article du panier
@@ -225,6 +225,5 @@
 
 </body>
 </html>
-
 
 
