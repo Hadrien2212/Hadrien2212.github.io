@@ -96,6 +96,65 @@
     }
 
     .btn-ajouter:hover {
-      background-color: #b28
+      background-color: #b28a27;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: #ccc;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Refashionshop</h1>
+    <p>Vêtements de luxe d'occasion</p>
+  </header>
+
+  <main>
+    <h2>Nos Sélections Élégantes</h2>
+    <div class="produits">
+      <div class="produit">
+        <img src="https://images.unsplash.com/photo-1589987601948-5fd4010c6305?auto=format&fit=crop&w=800&q=80" alt="Sac Chanel">
+        <h3>Sac Chanel Classique</h3>
+        <p>État impeccable - 1 200€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
+      </div>
+      <div class="produit">
+        <img src="https://images.unsplash.com/photo-1593032465172-870d12069cf5?auto=format&fit=crop&w=800&q=80" alt="Robe Dior">
+        <h3>Robe Dior Soirée</h3>
+        <p>Édition limitée - 890€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
+      </div>
+      <div class="produit">
+        <img src="https://images.unsplash.com/photo-1542062703-3c67a3f5c6de?auto=format&fit=crop&w=800&q=80" alt="Manteau Burberry">
+        <h3>Manteau Burberry Hiver</h3>
+        <p>En laine - 650€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Refashionshop — Élégance & Seconde Vie
+  </footer>
+
+  <script>
+    function ajouterAuPanier(nom, prix) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.push({ name: nom, price: prix });
+      localStorage.setItem('cart', JSON.stringify(panier));
+      alert(`${nom} a été ajouté au panier !`);
+    }
+  </script>
+
+</body>
+</html>
+
 
 
