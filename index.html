@@ -49,6 +49,48 @@
       background-color: #333;
     }
 
+    .menu-container {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+    }
+
+    .menu-btn {
+      background-color: #222;
+      color: #d4af37;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-btn:hover {
+      background-color: #333;
+    }
+
+    .menu-dropdown {
+      display: none;
+      flex-direction: column;
+      background-color: #111;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-dropdown a {
+      color: #d4af37;
+      text-decoration: none;
+      padding: 0.4rem 0;
+      font-size: 1rem;
+    }
+
+    .menu-dropdown a:hover {
+      color: #fff;
+    }
+
     main {
       max-width: 1100px;
       margin: auto;
@@ -130,12 +172,21 @@
 <body>
 
   <header>
+    <div class="menu-container">
+      <button class="menu-btn" onclick="toggleDropdown()">☰ Menu</button>
+      <div id="menu-dropdown" class="menu-dropdown">
+        <a href="#articles">Nos articles</a>
+        <a href="#histoire">Notre histoire</a>
+        <a href="#contact">Nous contacter</a>
+      </div>
+    </div>
     <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
     <h1>Refashionshop</h1>
     <p>Vêtements de luxe d'occasion</p>
   </header>
 
   <main>
+    <section id="articles"></section>
     <h2>Nos Sélections Élégantes</h2>
     <div class="produits">
       <div class="produit">
@@ -157,6 +208,20 @@
         <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
       </div>
     </div>
+
+    <section id="histoire" style="margin-top: 5rem;">
+      <h2>Notre Histoire</h2>
+      <p style="text-align:center; max-width:700px; margin:auto;">
+        Refashionshop est né de la passion pour la mode durable et élégante. Nous croyons en une seconde vie pour les vêtements de luxe, tout en respectant l’environnement.
+      </p>
+    </section>
+
+    <section id="contact" style="margin-top: 5rem;">
+      <h2>Nous Contacter</h2>
+      <p style="text-align:center; max-width:700px; margin:auto;">
+        Vous pouvez nous écrire à contact@refashionshop.fr ou nous suivre sur Instagram @refashionshop.
+      </p>
+    </section>
   </main>
 
   <footer>
@@ -177,13 +242,13 @@
       document.getElementById('cart-count').textContent = panier.length;
     }
 
-    // Mettre à jour le compteur au chargement de la page
+    function toggleDropdown() {
+      const menu = document.getElementById('menu-dropdown');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
     window.onload = mettreAJourCompteur;
   </script>
 
 </body>
 </html>
-
-
-
-
