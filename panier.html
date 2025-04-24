@@ -1,142 +1,88 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Votre Panier - Refashionshop</title>
+  <meta charset="UTF-8" />
+  <title>Panier - Refashionshop</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Georgia', serif;
       background-color: #f4f0ea;
+      margin: 0;
+      padding: 2rem;
       color: #1a1a1a;
     }
-
-    header {
-      background-color: #111;
+    h1 {
+      text-align: center;
       color: #d4af37;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-    }
-
-    h2 {
-      text-align: center;
       margin-bottom: 2rem;
     }
-
-    .panier-liste {
+    .article {
       background: white;
       border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #ddd;
-      padding: 1rem 0;
-    }
-
-    .item:last-child {
-      border-bottom: none;
-    }
-
-    .item span {
-      font-size: 1.1rem;
-    }
-
     .total {
-      text-align: right;
+      text-align: center;
       font-size: 1.3rem;
       margin-top: 2rem;
-      font-weight: bold;
     }
-
-    .btn-retour, .btn-reset {
-      display: inline-block;
-      margin-top: 2rem;
-      text-decoration: none;
+    .vider {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
       background-color: #d4af37;
       color: white;
       padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      border: none;
       border-radius: 5px;
-      transition: background-color 0.3s;
       cursor: pointer;
-      margin-right: 1rem;
-    }
-
-    .btn-retour:hover, .btn-reset:hover {
-      background-color: #b28a27;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Votre Panier</h1>
-  </header>
-
-  <main>
-    <h2>Articles sélectionnés</h2>
-    <div class="panier-liste" id="liste-panier"></div>
-    <div class="total" id="total"></div>
-
-    <a class="btn-retour" href="index.html">← Retour à la boutique</a>
-    <button class="btn-reset" onclick="viderPanier()">Vider le panier</button>
-  </main>
+  <h1>🛒 Votre Panier</h1>
+  <div id="contenu-panier"></div>
+  <div class="total" id="total"></div>
+  <button class="vider" onclick="viderPanier()">Vider le panier</button>
 
   <script>
     function afficherPanier() {
       const panier = JSON.parse(localStorage.getItem('cart')) || [];
-      const liste = document.getElementById('liste-panier');
-      const total = document.getElementById('total');
+      const contenu = document.getElementById('contenu-panier');
+      const totalDiv = document.getElementById('total');
+      contenu.innerHTML = '';
+      let total = 0;
 
       if (panier.length === 0) {
-        liste.innerHTML = "<p>Votre panier est vide.</p>";
-        total.textContent = "";
+        contenu.innerHTML = "<p style='text-align:center;'>Votre panier est vide.</p>";
+        totalDiv.textContent = "";
         return;
       }
 
-      let totalPrix = 0;
-      liste.innerHTML = '';
-
-      panier.forEach(article => {
-        const item = document.createElement('div');
-        item.classList.add('item');
-        item.innerHTML = `
-          <span>${article.name}</span>
-          <span>${article.price.toFixed(2)} €</span>
+      panier.forEach((item, index) => {
+        total += item.prix;
+        contenu.innerHTML += `
+          <div class="article">
+            <strong>${item.nom}</strong><br>
+            Prix : ${item.prix} €
+          </div>
         `;
-        liste.appendChild(item);
-        totalPrix += article.price;
       });
 
-      total.textContent = `Total : ${totalPrix.toFixed(2)} €`;
+      totalDiv.textContent = `Total : ${total.toFixed(2)} €`;
     }
 
     function viderPanier() {
-      if (confirm("Voulez-vous vraiment vider votre panier ?")) {
-        localStorage.removeItem('cart');
-        afficherPanier();
-      }
+      localStorage.removeItem('cart');
+      afficherPanier();
     }
 
-    // Affiche le panier au chargement
-    window.onload = afficherPanier;
+    document.addEventListener('DOMContentLoaded', afficherPanier);
   </script>
-
 </body>
 </html>
+
 
