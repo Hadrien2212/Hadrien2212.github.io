@@ -1,128 +1,137 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Panier - Refashionshop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refashionshop</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      padding: 2rem;
-      background-color: #fafafa;
+      background-color: #f9f9f9;
       color: #333;
     }
 
-    h1 {
+    header {
+      background-color: #111;
+      color: white;
+      padding: 2rem;
       text-align: center;
     }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
     }
 
-    li {
+    header p {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .produits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .produit {
       background: white;
-      padding: 1rem;
-      margin-bottom: 1rem;
       border: 1px solid #ddd;
-      border-radius: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
     }
 
-    .total {
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-align: right;
-      margin-top: 2rem;
+    .produit:hover {
+      transform: scale(1.02);
     }
 
-    .back,
-    .vider-panier,
-    .commander {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 10px 15px;
+    .produit img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .produit h3 {
+      margin: 1rem;
+    }
+
+    .produit p {
+      margin: 0 1rem 1rem;
+    }
+
+    .ajouter-panier {
       background-color: #111;
       color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
-
-    .supprimer {
-      background-color: crimson;
+      padding: 0.5rem 1rem;
       border: none;
-      color: white;
-      padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
+      margin: 0 1rem 1rem;
+    }
+
+    .ajouter-panier:hover {
+      background-color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #eee;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-  <h1>Mon Panier 🛒</h1>
-  <ul id="cart-items"></ul>
-  <div class="total" id="cart-total">Total : 0€</div>
+  <header>
+    <h1>Refashionshop</h1>
+    <p>La mode de luxe, réinventée</p>
+  </header>
 
-  <a class="back" href="index.html">← Retour à la boutique</a>
-  <button class="vider-panier" onclick="viderPanier()">Vider le panier</button>
-  <button class="commander" onclick="passerCommande()">Commander</button>
+  <main>
+    <h2>Nos articles</h2>
+    <div class="produits">
+      <div class="produit">
+        <img src="https://via.placeholder.com/300x250?text=Sac+Chanel" alt="Sac Chanel">
+        <h3>Sac Chanel Classique</h3>
+        <p>État impeccable. 1 200€</p>
+        <button class="ajouter-panier" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
+      </div>
+      <div class="produit">
+        <img src="https://via.placeholder.com/300x250?text=Robe+Dior" alt="Robe Dior">
+        <h3>Robe Dior Édition Limitée</h3>
+        <p>Portée une seule fois. 890€</p>
+        <button class="ajouter-panier" onclick="ajouterAuPanier('Robe Dior Édition Limitée', 890)">Ajouter au Panier</button>
+      </div>
+      <div class="produit">
+        <img src="https://via.placeholder.com/300x250?text=Manteau+Burberry" alt="Manteau Burberry">
+        <h3>Manteau Burberry</h3>
+        <p>Collection hiver. 650€</p>
+        <button class="ajouter-panier" onclick="ajouterAuPanier('Manteau Burberry', 650)">Ajouter au Panier</button>
+      </div>
+    </div>
+    <a href="panier.html" class="ajouter-panier">Voir le Panier</a>
+  </main>
+
+  <footer>
+    © 2025 Refashionshop. Tous droits réservés.
+  </footer>
 
   <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const list = document.getElementById('cart-items');
-    const totalDisplay = document.getElementById('cart-total');
-
-    function renderCart() {
-      list.innerHTML = '';
-      let total = 0;
-
-      if (cart.length === 0) {
-        list.innerHTML = "<li>Votre panier est vide.</li>";
-        totalDisplay.textContent = "Total : 0€";
-        return;
-      }
-
-      cart.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `${item.name} - ${item.price}€
-          <button class="supprimer" onclick="supprimerArticle(${index})">Supprimer</button>`;
-        list.appendChild(li);
-        total += item.price;
-      });
-
-      totalDisplay.textContent = `Total : ${total}€`;
+    function ajouterAuPanier(nom, prix) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.push({ name: nom, price: prix });
+      localStorage.setItem('cart', JSON.stringify(panier));
+      alert(`${nom} a été ajouté au panier !`);
     }
-
-    function supprimerArticle(index) {
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function viderPanier() {
-      if (confirm("Êtes-vous sûr de vouloir vider le panier ?")) {
-        cart = [];
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCart();
-      }
-    }
-
-    function passerCommande() {
-      if (cart.length === 0) {
-        alert("Votre panier est vide.");
-        return;
-      }
-      alert("Merci pour votre commande ! (simulation)");
-      cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    renderCart();
   </script>
 </body>
 </html>
