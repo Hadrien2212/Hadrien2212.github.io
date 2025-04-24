@@ -49,48 +49,6 @@
       background-color: #333;
     }
 
-    .menu-container {
-      position: absolute;
-      top: 1.5rem;
-      left: 2rem;
-    }
-
-    .menu-btn {
-      background-color: #222;
-      color: #d4af37;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .menu-btn:hover {
-      background-color: #333;
-    }
-
-    .menu-dropdown {
-      display: none;
-      flex-direction: column;
-      background-color: #111;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      margin-top: 0.5rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .menu-dropdown a {
-      color: #d4af37;
-      text-decoration: none;
-      padding: 0.4rem 0;
-      font-size: 1rem;
-    }
-
-    .menu-dropdown a:hover {
-      color: #fff;
-    }
-
     main {
       max-width: 1100px;
       margin: auto;
@@ -172,56 +130,37 @@
 <body>
 
   <header>
-    <div class="menu-container">
-      <button class="menu-btn" onclick="toggleDropdown()">☰ Menu</button>
-      <div id="menu-dropdown" class="menu-dropdown">
-        <a href="#articles">Nos articles</a>
-        <a href="#histoire">Notre histoire</a>
-        <a href="#contact">Nous contacter</a>
-      </div>
-    </div>
     <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
     <h1>Refashionshop</h1>
     <p>Vêtements de luxe d'occasion</p>
   </header>
 
   <main>
-    <section id="articles"></section>
     <h2>Nos Sélections Élégantes</h2>
     <div class="produits">
+
       <div class="produit">
-        <img src="https://images.unsplash.com/photo-1589987601948-5fd4010c6305?auto=format&fit=crop&w=800&q=80" alt="Sac Chanel">
+        <img src="https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg" alt="Sac Chanel Classique">
         <h3>Sac Chanel Classique</h3>
         <p>État impeccable - 1 200€</p>
         <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
       </div>
+
       <div class="produit">
-        <img src="https://images.unsplash.com/photo-1593032465172-870d12069cf5?auto=format&fit=crop&w=800&q=80" alt="Robe Dior">
+        <img src="https://media.1robepour1soir.com/product/1600x2400/robe-longue-dior-dream.jpg" alt="Robe Dior Soirée">
         <h3>Robe Dior Soirée</h3>
         <p>Édition limitée - 890€</p>
         <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
       </div>
+
       <div class="produit">
-        <img src="https://images.unsplash.com/photo-1542062703-3c67a3f5c6de?auto=format&fit=crop&w=800&q=80" alt="Manteau Burberry">
+        <img src="https://cdn.jolicloset.com/img/items/2023/01/15/1753178/large/burberry-manteau-en-laine-beige.jpg" alt="Manteau Burberry Hiver">
         <h3>Manteau Burberry Hiver</h3>
         <p>En laine - 650€</p>
         <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
       </div>
+
     </div>
-
-    <section id="histoire" style="margin-top: 5rem;">
-      <h2>Notre Histoire</h2>
-      <p style="text-align:center; max-width:700px; margin:auto;">
-        Refashionshop est né de la passion pour la mode durable et élégante. Nous croyons en une seconde vie pour les vêtements de luxe, tout en respectant l’environnement.
-      </p>
-    </section>
-
-    <section id="contact" style="margin-top: 5rem;">
-      <h2>Nous Contacter</h2>
-      <p style="text-align:center; max-width:700px; margin:auto;">
-        Vous pouvez nous écrire à contact@refashionshop.fr ou nous suivre sur Instagram @refashionshop.
-      </p>
-    </section>
   </main>
 
   <footer>
@@ -240,11 +179,6 @@
     function mettreAJourCompteur() {
       const panier = JSON.parse(localStorage.getItem('cart')) || [];
       document.getElementById('cart-count').textContent = panier.length;
-    }
-
-    function toggleDropdown() {
-      const menu = document.getElementById('menu-dropdown');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
     }
 
     window.onload = mettreAJourCompteur;
