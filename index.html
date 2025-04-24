@@ -68,6 +68,21 @@
       margin: 0 1rem 1rem;
     }
 
+    .produit button {
+      margin: 0 1rem 1rem;
+      padding: 10px 15px;
+      background-color: #111;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .produit button:hover {
+      background-color: #444;
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -80,25 +95,29 @@
   <header>
     <h1>Refashionshop</h1>
     <p>La mode de luxe, réinventée</p>
+    <p><a href="panier.html" style="color: white; text-decoration: underline;">Voir le panier</a> 🛒 <span id="cart-count">0</span></p>
   </header>
 
   <main>
-    <h2>Nos articles tendances</h2>
+    <h2>Nos articles</h2>
     <div class="produits">
       <div class="produit">
         <img src="https://via.placeholder.com/300x250?text=Sac+Chanel" alt="Sac Chanel">
         <h3>Sac Chanel Classique</h3>
         <p>État impeccable. 1 200€</p>
+        <button class="add-to-cart" data-name="Sac Chanel Classique" data-price="1200">Ajouter au panier</button>
       </div>
       <div class="produit">
         <img src="https://via.placeholder.com/300x250?text=Robe+Dior" alt="Robe Dior">
         <h3>Robe Dior Édition Limitée</h3>
         <p>Portée une seule fois. 890€</p>
+        <button class="add-to-cart" data-name="Robe Dior Édition Limitée" data-price="890">Ajouter au panier</button>
       </div>
       <div class="produit">
         <img src="https://via.placeholder.com/300x250?text=Manteau+Burberry" alt="Manteau Burberry">
         <h3>Manteau Burberry</h3>
         <p>Collection hiver. 650€</p>
+        <button class="add-to-cart" data-name="Manteau Burberry" data-price="650">Ajouter au panier</button>
       </div>
     </div>
   </main>
@@ -106,5 +125,34 @@
   <footer>
     © 2025 Refashionshop. Tous droits réservés.
   </footer>
+
+  <!-- Script pour gérer le panier -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function () {
+        const name = this.dataset.name;
+        const price = parseInt(this.dataset.price);
+        cart.push({ name, price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+
+        this.textContent = "Ajouté !";
+        this.style.backgroundColor = "#28a745";
+        setTimeout(() => {
+          this.textContent = "Ajouter au panier";
+          this.style.backgroundColor = "#111";
+        }, 1000);
+      });
+    });
+
+    updateCartCount();
+  </script>
 </body>
 </html>
+
