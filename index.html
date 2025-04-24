@@ -1,83 +1,230 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Panier - Refashionshop</title>
   <style>
-    /* Styles simplifiés pour l'affichage du panier */
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Georgia', serif;
       background-color: #f4f0ea;
-      padding: 2rem;
+      color: #1a1a1a;
+    }
+
+    header {
+      background-color: #111;
+      color: #d4af37;
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .menu-gauche {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+    }
+
+    .menu-gauche a {
+      color: #d4af37;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .menu-gauche a:hover {
+      text-decoration: underline;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-style: italic;
+      margin-top: 1rem;
+      color: #f5f5f5;
+    }
+
+    .btn-retour-boutique {
+      display: inline-block;
+      background-color: #d4af37;
+      color: white;
+      padding: 0.8rem 1.7rem;
+      text-align: center;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 2rem;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn-retour-boutique:hover {
+      background-color: #b28a27;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: #ccc;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      font-size: 1rem;
+    }
+
+    #panier-contenu {
+      padding: 4rem 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-top: 4rem;
+      max-width: 900px;
+      margin: auto;
     }
 
     .panier-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
       padding: 1rem;
       background-color: #fff;
-      border: 1px solid #ddd;
-      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .panier-item p {
+      margin: 0;
+    }
+
+    .btn-supprimer {
+      background-color: #d4af37;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-supprimer:hover {
+      background-color: #b28a27;
     }
 
     .total-panier {
+      margin-top: 2rem;
       font-size: 1.5rem;
       text-align: right;
-      margin-top: 1rem;
     }
+
+    #histoire {
+      background-color: #fffbe6;
+      padding: 4rem 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-top: 4rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
   </style>
 </head>
 <body>
 
-  <h1>Votre Panier</h1>
-  
-  <div id="panier-items"></div>
-  <div id="total-panier"></div>
+  <header>
+    <div class="menu-gauche">
+      <a href="index.html">Articles</a>
+      <a href="#histoire">Notre Histoire</a>
+      <a href="#contact">Nous Contacter</a>
+    </div>
+    <h1>Refashionshop</h1>
+    <p>Vêtements de luxe d'occasion</p>
+  </header>
+
+  <section id="panier-contenu">
+    <h2 style="text-align:center; font-size:2.5rem; margin-bottom:3rem;">Votre Panier</h2>
+
+    <div id="panier-items">
+      <!-- Liste des produits dans le panier -->
+    </div>
+
+    <div id="total-panier" class="total-panier">
+      <!-- Affichage du total du panier -->
+    </div>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="btn-retour-boutique">Retour à la Boutique</a>
+    </div>
+  </section>
+
+  <!-- Section Notre Histoire -->
+  <section id="histoire">
+    <h2 style="text-align:center; font-size:2.5rem; color:#1a1a1a; margin-bottom:3rem;">Notre Histoire</h2>
+    <p style="max-width: 900px; margin: auto; color: #333;">
+      Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète. Fondée en 2025 par un duo d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée comme une référence pour tous ceux qui souhaitent allier style et conscience écologique.
+      <br><br>
+      Dès nos débuts, nous avons été animés par une volonté simple mais ambitieuse : offrir une seconde vie aux trésors de la haute couture. Trop souvent, des pièces d’exception sont reléguées au fond d’un dressing ou jetées alors qu’elles ont encore tant à offrir. Nous avons voulu leur redonner l’éclat qu’elles méritent.
+      <br><br>
+      Chaque article sélectionné sur Refashionshop est rigoureusement authentifié, inspecté et restauré si nécessaire. Nous collaborons avec des experts du luxe et des stylistes afin de vous garantir des vêtements et accessoires à la fois élégants, durables et porteurs d’une histoire unique.
+      <br><br>
+      Mais Refashionshop, c’est aussi une communauté. Une famille de passionnés qui croient que la mode ne doit plus être synonyme de gaspillage. Nous croyons en une consommation plus réfléchie, en une élégance responsable, en des choix durables.
+      <br><br>
+      Notre engagement ne s'arrête pas à la vente : nous soutenons des actions solidaires, promouvons la réparation, le don et la valorisation des savoir-faire artisanaux. Parce que chaque pièce de luxe mérite une seconde chance, et chaque client mérite de porter une histoire.
+      <br><br>
+      Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Refashionshop — Élégance & Seconde Vie
+  </footer>
 
   <script>
-    // Fonction pour afficher les articles du panier
+    // Fonction pour récupérer les éléments du panier depuis localStorage et afficher le contenu
     function afficherPanier() {
-      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
       const panierItems = document.getElementById('panier-items');
       const totalPanier = document.getElementById('total-panier');
       let total = 0;
 
-      // Si le panier est vide
+      panierItems.innerHTML = '';
+      
       if (panier.length === 0) {
-        panierItems.innerHTML = '<p>Votre panier est vide.</p>';
-        totalPanier.innerHTML = '';
+        panierItems.innerHTML = '<p style="text-align:center;">Votre panier est vide.</p>';
       } else {
-        panierItems.innerHTML = ''; // On vide l'élément avant d'ajouter les articles
-
-        // Parcours chaque article dans le panier
         panier.forEach((item, index) => {
           const divItem = document.createElement('div');
           divItem.classList.add('panier-item');
           divItem.innerHTML = `
             <p><strong>${item.nom}</strong> - ${item.prix}€</p>
-            <button onclick="supprimerDuPanier(${index})">Supprimer</button>
+            <button class="btn-supprimer" onclick="supprimerDuPanier(${index})">Supprimer</button>
           `;
           panierItems.appendChild(divItem);
           total += item.prix;
         });
-
-        // Affichage du total
-        totalPanier.innerHTML = `Total : ${total}€`;
       }
+
+      // Affichage du total du panier
+      totalPanier.innerHTML = `<strong>Total : ${total}€</strong>`;
     }
 
-    // Fonction pour supprimer un article
+    // Fonction pour supprimer un article du panier
     function supprimerDuPanier(index) {
       let panier = JSON.parse(localStorage.getItem('cart')) || [];
-      panier.splice(index, 1);  // Retirer l'article à l'index donné
-      localStorage.setItem('cart', JSON.stringify(panier));  // Mettre à jour le panier
-      afficherPanier();  // Rafraîchir l'affichage du panier
+      panier.splice(index, 1); // Retirer l'article à l'index spécifié
+      localStorage.setItem('cart', JSON.stringify(panier)); // Mettre à jour le panier dans localStorage
+      afficherPanier(); // Actualiser l'affichage du panier
     }
 
-    // Appeler la fonction pour afficher le panier après le chargement de la page
-    window.onload = afficherPanier;
+    document.addEventListener('DOMContentLoaded', afficherPanier);
   </script>
 
 </body>
 </html>
+
 
 
