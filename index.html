@@ -234,13 +234,13 @@
         <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Dior Hiver', 650)">Ajouter au Panier</button>
       </div>
     </div>
-  </main>
+  </section>
 
    <section id="chanel-collection">
         <h2>Sélection Chanel</h2>
         <div class="produits">
             <div class="produit">
-<img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
         <h3>Sac Dior Lady</h3>
         <p>État impeccable - 1 200€</p>
         <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Dior Lady', 1200)">Ajouter au Panier</button>
@@ -260,9 +260,34 @@
         <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Dior Hiver', 650)">Ajouter au Panier</button>
       </div>
     </div>
-  </main>
+  </section>
 
-              
+    <section id="burberry-collection">
+        <h2>Sélection Burberry</h2>
+        <div class="produits">
+            <div class="produit">
+   <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
+        <h3>Sac Dior Lady</h3>
+        <p>État impeccable - 1 200€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Dior Lady', 1200)">Ajouter au Panier</button>
+      </div>
+
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/robe.jpg" alt="Robe Dior Soirée">
+        <h3>Robe Dior Soirée</h3>
+        <p>Édition limitée - 890€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
+      </div>
+
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/manteau.jpg" alt="Manteau Dior Hiver">
+        <h3>Manteau Dior Hiver</h3>
+        <p>En laine - 650€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Dior Hiver', 650)">Ajouter au Panier</button>
+      </div>
+    </div>
+  </section>
+    
   <!-- Section Histoire -->
   <section id="histoire">
     <h2 style="text-align:center; font-size:2.5rem;">Notre Histoire</h2>
@@ -322,6 +347,20 @@
     document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
   </script>
 
+  const sectionsNav = document.getElementById('article-sections-nav');
+
+        sectionsNav.addEventListener('change', function() {
+            const targetId = this.value; 
+            const targetElement = document.querySelector(targetId); 
+
+            if (targetElement) {
+                // Fait défiler la page jusqu'à l'élément cible
+                targetElement.scrollIntoView({
+                    behavior: 'smooth' 
+                });
+            }
+        });
+        
 </body>
 </html>
 
