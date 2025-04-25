@@ -130,6 +130,13 @@
       background-color: #e67e22;
     }
 
+    .total-panier {
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 2rem;
+    }
+
     footer {
       text-align: center;
       background: #111;
@@ -154,6 +161,7 @@
     <h2>Articles dans votre Panier</h2>
 
     <div id="panier-content"></div>
+    <div id="total" class="total-panier">Total : 0€</div>
 
     <button class="vider-panier" onclick="viderPanier()">Vider le Panier</button>
   </main>
@@ -163,18 +171,21 @@
   </footer>
 
   <script>
-    // Fonction pour afficher les articles du panier
+    // Fonction pour afficher les articles du panier et le total
     function afficherPanier() {
       const panier = JSON.parse(localStorage.getItem('cart')) || [];
       const panierContent = document.getElementById('panier-content');
+      const totalElement = document.getElementById('total');
       
       panierContent.innerHTML = ""; // Réinitialiser le contenu du panier
 
       if (panier.length === 0) {
         panierContent.innerHTML = "<p style='text-align: center;'>Votre panier est vide.</p>";
+        totalElement.innerText = "Total : 0€";
         return;
       }
 
+      let total = 0; // Initialisation du total
       panier.forEach((article, index) => {
         const articleDiv = document.createElement('div');
         articleDiv.classList.add('article-panier');
@@ -187,7 +198,11 @@
         `;
         
         panierContent.appendChild(articleDiv);
+        total += parseFloat(article.prix); // Ajouter le prix de l'article au total
       });
+
+      // Affichage du total
+      totalElement.innerText = `Total : ${total.toFixed(2)}€`;
     }
 
     // Fonction pour supprimer un article du panier
