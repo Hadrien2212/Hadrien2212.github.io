@@ -217,6 +217,23 @@
       background-color: #f4f0ea;
       margin-top: 4rem;
     }
+
+     #scrollTopBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #scrollTopBtn:hover {
+        background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -265,6 +282,8 @@
         </div>
   </section>
 
+    <button id="scrollTopBtn" style="display: none;">⬆️ Haut</button>
+    
    <section id="chanel-collection">
         <h2>Nos Sélections Chanel</h2>
         <div class="produits">
@@ -291,6 +310,8 @@
         </div>
   </section>
 
+    <button id="scrollTopBtn" style="display: none;">⬆️ Haut</button>
+    
     <section id="burberry-collection">
         <h2>Nos Sélections Burberry</h2>
         <div class="produits">
@@ -317,6 +338,7 @@
     </div>
   </section>
 
+    <button id="scrollTopBtn" style="display: none;">⬆️ Haut</button>
 </main>
   
   <!-- Section Histoire -->
@@ -345,7 +367,9 @@
       Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
     </p>
   </section>
-
+  
+<button id="scrollTopBtn" style="display: none;">⬆️ Haut</button>
+  
   <section id="contact">
     <h2 style="text-align:center;">Nous Contacter</h2>
     <p style="text-align:center; max-width:700px; margin:auto;">
@@ -353,6 +377,8 @@
       Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
     </p>
   </section>
+
+  <button id="scrollTopBtn" style="display: none;">⬆️ Haut</button>
 
   <footer>
     © 2025 Refashionshop — Élégance & Seconde Vie
@@ -379,6 +405,21 @@
         document.addEventListener('DOMContentLoaded', () => {
             mettreAJourCompteur(); // Met à jour le compteur au chargement
 
+           // Afficher ou masquer le bouton selon la position de défilement
+    window.onscroll = function() {
+        var scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    };
+
+    // Remonter en haut de la page lorsque le bouton est cliqué
+    document.getElementById("scrollTopBtn").onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+          
             // ****** CODE POUR LE MENU DEROULANT ******
             const sectionsNav = document.getElementById('article-sections-nav');
 
