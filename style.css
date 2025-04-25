@@ -40,3 +40,11 @@ input[type="submit"] {
   border: none;
   cursor: pointer;
 }
+
+#articles {
+    background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/refashionsacchanel.jpeg'); 
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center;
+    padding: 20px; 
+}
