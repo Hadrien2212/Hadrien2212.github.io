@@ -180,65 +180,7 @@
         <img src="https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg" alt="Sac Chanel Classique">
         <h3>Sac Chanel Classique</h3>
         <p>État impeccable - 1 200€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200, 'https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg')">Ajouter au Panier</button>
-      </div>
-
-      <div class="produit">
-        <img src="https://media.1robepour1soir.com/product/1600x2400/robe-longue-dior-dream.jpg" alt="Robe Dior Soirée">
-        <h3>Robe Dior Soirée</h3>
-        <p>Édition limitée - 890€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890, 'https://media.1robepour1soir.com/product/1600x2400/robe-longue-dior-dream.jpg')">Ajouter au Panier</button>
-      </div>
-
-      <div class="produit">
-        <img src="https://cdn.jolicloset.com/img/items/2023/01/15/1753178/large/burberry-manteau-en-laine-beige.jpg" alt="Manteau Burberry Hiver">
-        <h3>Manteau Burberry Hiver</h3>
-        <p>En laine - 650€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650, 'https://cdn.jolicloset.com/img/items/2023/01/15/1753178/large/burberry-manteau-en-laine-beige.jpg')">Ajouter au Panier</button>
-      </div>
-
-    </div>
-  </main>
-
-  <section id="histoire">
-    <h2 style="text-align:center; font-size:2.5rem; color:#1a1a1a; margin-bottom:3rem;">Notre Histoire</h2>
-    <p style="max-width: 900px; margin: auto; color: #333;">
-      Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète...
-      (texte inchangé)
-    </p>
-  </section>
-
-  <section id="contact">
-    <h2 style="text-align:center;">Nous Contacter</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      Une question, une suggestion ou une collaboration ?<br/>
-      Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
-    </p>
-  </section>
-
-  <footer>
-    © 2025 Refashionshop — Élégance & Seconde Vie
-  </footer>
-
-  <script>
-    function ajouterAuPanier(nom, prix, image) {
-      let panier = JSON.parse(localStorage.getItem('cart')) || [];
-      panier.push({ nom: nom, prix: prix, image: image });
-      localStorage.setItem('cart', JSON.stringify(panier));
-      mettreAJourCompteur();
-      alert(`${nom} a été ajouté au panier !`);
-    }
-
-    function mettreAJourCompteur() {
-      const panier = JSON.parse(localStorage.getItem('cart')) || [];
-      document.getElementById('cart-count').textContent = panier.length;
-    }
-
-    document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
-  </script>
-</body>
-</html>
-
+        <button class="btn-ajouter" onclick
 
 
                               
