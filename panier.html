@@ -6,180 +6,133 @@
   <title>Panier - Refashionshop</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Georgia', serif;
       background-color: #f4f0ea;
       color: #1a1a1a;
-      margin: 0;
+      padding: 2rem;
     }
 
-    header {
-      background-color: #111;
-      color: #d4af37;
-      padding: 2rem 1rem;
+    h1 {
       text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    .panier-lien {
-      font-size: 1rem;
-      color: #d4af37;
-      text-decoration: none;
-      background-color: #222;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      transition: background-color 0.3s;
-      display: inline-block;
-    }
-
-    .panier-lien:hover {
-      background-color: #333;
-    }
-
-    main {
-      padding: 3rem 1.5rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 2rem;
     }
 
-    .panier-items {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .panier-item {
+    .article {
+      background-color: white;
+      margin: 1rem auto;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 700px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: white;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .panier-item img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .panier-item h3 {
-      margin: 0;
       font-size: 1.2rem;
-      color: #1a1a1a;
-    }
-
-    .panier-item p {
-      margin: 0;
-      font-weight: 500;
-      color: #555;
     }
 
     .total {
-      font-size: 1.5rem;
       text-align: center;
-      margin-top: 2rem;
-      color: #d4af37;
+      font-size: 1.5rem;
+      margin-top: 3rem;
+      font-weight: bold;
     }
 
-    .btn-vider {
+    .btn-retour {
       display: block;
-      width: 100%;
+      margin: 3rem auto 0;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.1rem;
       background-color: #d4af37;
       color: white;
-      font-size: 1.2rem;
-      padding: 1rem;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin-top: 2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      text-align: center;
+      width: fit-content;
     }
 
-    .btn-vider:hover {
+    .btn-retour:hover {
       background-color: #b28a27;
     }
 
-    footer {
+    .vider {
       text-align: center;
-      background: #111;
-      color: #ccc;
-      padding: 2rem 1.5rem;
-      margin-top: 4rem;
+      margin-top: 2rem;
+    }
+
+    .vider button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #aa3333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .vider button:hover {
+      background-color: #881c1c;
     }
   </style>
 </head>
 <body>
+  <h1>Votre Panier</h1>
+  <div id="panier-container"></div>
+  <div class="total" id="total"></div>
+  <div class="vider">
+    <button onclick="viderPanier()">🗑️ Vider le panier</button>
+  </div>
 
-  <header>
-    <a class="panier-lien" href="index.html">Retour à l'accueil</a>
-    <h1>Mon Panier</h1>
-  </header>
-
-  <main>
-    <h2>Articles dans votre panier</h2>
-    <ul class="panier-items" id="panier-list"></ul>
-
-    <div class="total" id="total-prix">
-      Total : 0€ 
-    </div>
-
-    <button class="btn-vider" onclick="viderPanier()">Vider le panier</button>
-  </main>
-
-  <footer>
-    © 2025 Refashionshop — Élégance & Seconde Vie
-  </footer>
+  <!-- 🔁 Lien modifié vers les articles -->
+  <a class="btn-retour" href="index.html#articles">← Retourner aux articles</a>
 
   <script>
-    // Fonction pour afficher les produits dans le panier
     function afficherPanier() {
       const panier = JSON.parse(localStorage.getItem('cart')) || [];
-      const panierList = document.getElementById('panier-list');
-      const totalPrix = document.getElementById('total-prix');
+      const container = document.getElementById('panier-container');
+      const totalDiv = document.getElementById('total');
 
-      panierList.innerHTML = ''; // Vide le panier avant de le remplir
+      container.innerHTML = '';
       let total = 0;
 
-      panier.forEach(produit => {
-        const produitElement = document.createElement('li');
-        produitElement.classList.add('panier-item');
-        produitElement.innerHTML = `
-          <img src="${produit.image}" alt="${produit.nom}">
-          <div>
-            <h3>${produit.nom}</h3>
-            <p>${produit.prix}€</p>
-          </div>
+      if (panier.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>Votre panier est vide.</p>";
+        totalDiv.textContent = '';
+        return;
+      }
+
+      panier.forEach((item, index) => {
+        const article = document.createElement('div');
+        article.classList.add('article');
+        article.innerHTML = `
+          ${item.nom} - ${item.prix}€
+          <button onclick="supprimerArticle(${index})" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#aa3333;">✖</button>
         `;
-        panierList.appendChild(produitElement);
-        total += produit.prix;
+        container.appendChild(article);
+        total += item.prix;
       });
 
-      // Mise à jour du total
-      totalPrix.textContent = `Total : ${total}€`;
+      totalDiv.textContent = `Total : ${total.toFixed(2)} €`;
     }
 
-    // Fonction pour vider le panier
     function viderPanier() {
-      localStorage.removeItem('cart');
+      if (confirm("Voulez-vous vraiment vider votre panier ?")) {
+        localStorage.removeItem('cart');
+        afficherPanier();
+      }
+    }
+
+    function supprimerArticle(index) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(panier));
       afficherPanier();
     }
 
-    // Met à jour l'affichage du panier au chargement de la page
     document.addEventListener('DOMContentLoaded', afficherPanier);
   </script>
-
 </body>
 </html>
 
