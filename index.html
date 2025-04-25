@@ -3,184 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Refashionshop</title>
+  <title>Panier - Refashionshop</title>
   <style>
     body {
       margin: 0;
       font-family: 'Georgia', serif;
       background-color: #f4f0ea;
       color: #1a1a1a;
+      padding: 2rem;
     }
 
-    header {
-      background-color: #111;
-      color: #d4af37;
-      padding: 3rem 1rem 2rem;
+    h1 {
       text-align: center;
-      position: relative;
+      font-size: 3rem;
+      margin-bottom: 2rem;
     }
 
-    .menu-gauche {
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
+    .article {
+      background-color: white;
+      margin: 1rem auto;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      font-size: 1.2rem;
     }
 
-    .menu-gauche a {
-      color: #d4af37;
-      text-decoration: none;
-      margin-right: 1.5rem;
-      font-size: 1.1rem;
+    .article img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .article-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-top: 3rem;
       font-weight: bold;
     }
 
-    .menu-gauche a:hover {
-      text-decoration: underline;
-    }
-
-    header h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      font-style: italic;
-      margin-top: 1rem;
-      color: #f5f5f5;
-    }
-
-    .panier-lien {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 1rem;
-      color: #d4af37;
-      text-decoration: none;
-      background-color: #222;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      transition: background-color 0.3s;
-    }
-
-    .panier-lien:hover {
-      background-color: #333;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 4rem 1.5rem;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .produits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-    }
-
-    .produit {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #e5e5e5;
-    }
-
-    .produit:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .produit img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
-
-    .produit h3 {
-      margin: 1.5rem;
-      font-size: 1.3rem;
-      color: #1a1a1a;
-    }
-
-    .produit p {
-      margin: 0 1.5rem 2rem;
-      font-weight: 500;
-      color: #555;
-    }
-
-    .btn-ajouter {
+    .btn-retour {
       display: block;
+      margin: 3rem auto 0;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.1rem;
       background-color: #d4af37;
       color: white;
-      padding: 0.8rem 1.7rem;
-      text-align: center;
-      font-size: 1.1rem;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
-      margin: 0 1.5rem 2rem;
-      transition: background-color 0.3s;
+      text-decoration: none;
+      text-align: center;
+      width: fit-content;
     }
 
-    .btn-ajouter:hover {
+    .btn-retour:hover {
       background-color: #b28a27;
     }
 
-    footer {
+    .vider {
       text-align: center;
-      background: #111;
-      color: #ccc;
-      padding: 2rem 1.5rem;
-      margin-top: 4rem;
+      margin-top: 2rem;
+    }
+
+    .vider button {
+      padding: 0.5rem 1rem;
       font-size: 1rem;
+      background-color: #aa3333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    #histoire {
-      background-color: #fffbe6;
-      padding: 4rem 1.5rem;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      margin-top: 4rem;
-    }
-
-    #contact {
-      padding: 4rem 1.5rem;
-      background-color: #f4f0ea;
-      margin-top: 4rem;
+    .vider button:hover {
+      background-color: #881c1c;
     }
   </style>
 </head>
 <body>
+  <h1>Votre Panier</h1>
+  <div id="panier-container"></div>
+  <div class="total" id="total"></div>
+  <div class="vider">
+    <button onclick="viderPanier()">🗑️ Vider le panier</button>
+  </div>
+  <a class="btn-retour" href="index.html">← Continuer mes achats</a>
 
-  <header>
-    <div class="menu-gauche">
-      <a href="#articles">Articles</a>
-      <a href="#histoire">Notre Histoire</a>
-      <a href="#contact">Nous Contacter</a>
-    </div>
-    <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
-    <h1>Refashionshop</h1>
-    <p>Vêtements de luxe d'occasion</p>
-  </header>
+  <script>
+    function afficherPanier() {
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      const container = document.getElementById('panier-container');
+      const totalDiv = document.getElementById('total');
 
-  <main id="articles">
-    <h2>Nos Sélections Élégantes</h2>
-    <div class="produits">
+      container.innerHTML = '';
+      let total = 0;
 
-      <div class="produit">
-        <img src="https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg" alt="Sac Chanel Classique">
-        <h3>Sac Chanel Classique</h3>
-        <p>État impeccable - 1 200€</p>
-        <button class="btn-ajouter" onclick
+      if (panier.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>Votre panier est vide.</p>";
+        totalDiv.textContent = '';
+        mettreAJourCompteur();
+        return;
+      }
+
+      panier.forEach((item, index) => {
+        const article = document.createElement('div');
+        article.classList.add('article');
+        article.innerHTML = 
+          <img src="${item.image}" alt="${item.nom}">
+          <div class="article-info">
+            ${item.nom} - ${item.prix}€
+            <button onclick="supprimerArticle(${index})" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#aa3333;">✖</button>
+          </div>
+        ;
+        container.appendChild(article);
+        total += item.prix;
+      });
+
+      totalDiv.textContent = Total : ${total.toFixed(2)} €;
+      mettreAJourCompteur();
+    }
+
+    function viderPanier() {
+      if (confirm("Voulez-vous vraiment vider votre panier ?")) {
+        localStorage.removeItem('cart');
+        afficherPanier();
+      }
+    }
+
+    function supprimerArticle(index) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(panier));
+      afficherPanier();
+    }
+
+    function mettreAJourCompteur() {
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      const compteur = document.getElementById('cart-count');
+      if (compteur) {
+        compteur.textContent = panier.length;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', afficherPanier);
+  </script>
+</body>
+</html>
 
 
                               
