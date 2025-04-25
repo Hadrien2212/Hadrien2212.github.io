@@ -74,23 +74,17 @@
       max-width: 1100px;
       margin: auto;
       padding: 4rem 1.5rem;
-      /* Styles de fond pour #articles si vous les gardez */
-      background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/diorwallpaper2.jpg');
-      background-size: cover; /* Ou 'contain' ou '100% 100%' */
-      background-repeat: no-repeat;
-      background-position: center;
-      color: #d4af37; /* Couleur du texte par défaut dans #articles */
-    }
+   }
 
     /* Styles pour les sous-sections à l'intérieur de #articles */
     main#articles section {
-        padding: 2rem 0; /* Espacement entre les sous-sections */
-        border-bottom: 1px solid #ccc; /* Ligne de séparation (optionnel) */
-        margin-bottom: 2rem; /* Espacement après chaque sous-section */
+        padding: 2rem 0; 
+        border-bottom: 1px solid #ccc; 
+        margin-bottom: 2rem; 
     }
 
     main#articles section:last-child {
-        border-bottom: none; /* Pas de bordure après la dernière section */
+        border-bottom: none; 
         margin-bottom: 0;
     }
 
@@ -103,8 +97,8 @@
 
     /* Styles pour le menu déroulant */
     #article-sections-nav {
-        display: block; /* Pour qu'il prenne sa propre ligne */
-        margin: 0 auto 3rem auto; /* Centre le menu et ajoute de l'espace en dessous */
+        display: block; 
+        margin: 0 auto 3rem auto; 
         padding: 0.8rem 1.5rem;
         font-size: 1.1rem;
         border: 1px solid #ccc;
@@ -339,8 +333,7 @@
             const targetElement = document.querySelector(targetId); // Trouve l'élément par son ID
 
             if (targetElement) {
-                // Fait défiler la page jusqu'à l'élément cible
-                targetElement.scrollIntoView({
+                   targetElement.scrollIntoView({
                     behavior: 'smooth' // Ajoute une animation de défilement doux
                 });
             }
