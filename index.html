@@ -91,6 +91,16 @@
         margin-bottom: 0;
     }
 
+    <style>
+  /* Limiter la taille des sections */
+  main#articles section {
+    max-height: 600px; /* Limite à 600px */
+    overflow: hidden; /* Masque tout ce qui dépasse */
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2rem;
+  }
+    
   #dior-collection {
         background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/diorwallpaper2.jpg');
         background-size: contain; 
@@ -381,27 +391,26 @@
     // Mise à jour du compteur dès que la page est chargée
     document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
  
-  // CODE POUR LE MENU DEROULANT 
+  <script>
         const sectionsNav = document.getElementById('article-sections-nav');
 
-        if (sectionsNav) { 
-             sectionsNav.addEventListener('change', function() {
-                const targetId = this.value; 
-                const targetElement = document.querySelector(targetId); 
+  if (sectionsNav) {
+    sectionsNav.addEventListener('change', function () {
+      const targetId = this.value; // Valeur correcte avec le #
+      const targetElement = document.querySelector(targetId);
 
-                if (targetElement) {
-                       targetElement.scrollIntoView({
-                        behavior: 'smooth' 
-                     });
-                } else {
-                    console.error("Section with ID '" + targetId + "' not found."); 
-                }
-            });
-        } else {
-            console.error("Dropdown menu with ID 'article-sections-nav' not found."); 
-        }
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+        });
+      } else {
+        console.error("Section avec l'ID '" + targetId + "' introuvable.");
+      }
     });
-  </script>
+  } else {
+    console.error("Menu déroulant avec l'ID 'article-sections-nav' introuvable.");
+  }
+</script>
  
       
 </body>
