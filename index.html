@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Refashionshop</title>
   <style>
+    /* Style de la page */
     body {
       margin: 0;
       font-family: 'Georgia', serif;
@@ -198,8 +199,9 @@
     </div>
   </main>
 
+  <!-- Section Histoire -->
   <section id="histoire">
-    <h2 style="text-align:center;">Notre Histoire</h2>
+    <h2 style="text-align:center; font-size:2.5rem;">Notre Histoire</h2>
     <p style="max-width: 900px; margin: auto; color: #333;">
       Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète.
       Fondée en 2025 par un trio d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée
@@ -237,24 +239,28 @@
   </footer>
 
   <script>
+    // Fonction pour ajouter un article au panier
     function ajouterAuPanier(nom, prix) {
       let panier = JSON.parse(localStorage.getItem('cart')) || [];
       panier.push({ nom: nom, prix: prix });
       localStorage.setItem('cart', JSON.stringify(panier));
       mettreAJourCompteur();
-      alert(`${nom} a été ajouté au panier !`);
+      alert(nom + " a été ajouté au panier !");
     }
 
+    // Fonction pour mettre à jour le compteur de panier
     function mettreAJourCompteur() {
       const panier = JSON.parse(localStorage.getItem('cart')) || [];
       document.getElementById('cart-count').textContent = panier.length;
     }
 
+    // Mise à jour du compteur dès que la page est chargée
     document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
   </script>
 
 </body>
 </html>
+
 
                               
 
