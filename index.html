@@ -1,394 +1,363 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Refashionshop</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Refashionshop</title>
+  <link rel="stylesheet" href="styles.css"> <style>
+    /* Style de la page */
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f4f0ea;
+      color: #1a1a1a;
+    }
+
+    header {
+      background-color: #111;
+      color: #d4af37;
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .menu-gauche {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+    }
+
+    .menu-gauche a {
+      color: #d4af37;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .menu-gauche a:hover {
+      text-decoration: underline;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-style: italic;
+      margin-top: 1rem;
+      color: #f5f5f5;
+    }
+
+    .panier-lien {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 1rem;
+      color: #d4af37;
+      text-decoration: none;
+      background-color: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .panier-lien:hover {
+      background-color: #333;
+    }
+
+    main#articles {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 1.5rem;
+   }
+
+    main#articles section {
+        padding: 2rem 0; 
+        border-bottom: 1px solid #ccc; 
+        margin-bottom: 2rem;
+    }
+
+    main#articles section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
     <style>
-        /* Style de la page */
-        body {
-            margin: 0;
-            font-family: 'Georgia', serif;
-            background-color: #f4f0ea;
-            color: #1a1a1a;
-        }
+  /* Limiter la taille des sections */
+  main#articles section {
+    max-height: 600px; /* Limite à 600px */
+    overflow: hidden; /* Masque tout ce qui dépasse */
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2rem;
+  }
+    
+  #dior-collection {
+        background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/diorwallpaper2.jpg');
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px; 
+        color: #800020;
+ }
+    
+    #chanel-collection {
+        background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/chanelwallpaper.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px;
+        color: #800020; 
+    }
 
-        header {
-            background-color: #111;
-            color: #d4af37;
-            padding: 3rem 1rem 2rem;
-            text-align: center;
-            position: relative;
-        }
+    #burberry-collection {
+        background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/burberrywallpaper.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px;
+        color: #800020; 
+    }
+    
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+   
+    #article-sections-nav {
+        display: block; 
+        margin: 0 auto 3rem auto; 
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+        cursor: pointer;
+    }
+    
+    .produits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+    }
 
-        .menu-gauche {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-        }
+     .produit {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e5e5e5;
+    }
 
-        .menu-gauche a {
-            color: #d4af37;
-            text-decoration: none;
-            margin-right: 1.5rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
+    .produit:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
 
-        .menu-gauche a:hover {
-            text-decoration: underline;
-        }
+    .produit img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
 
-        header h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            letter-spacing: 2px;
-        }
+    .produit h3 {
+      margin: 1.5rem;
+      font-size: 1.3rem;
+      color: #1a1a1a;
+    }
 
-        header p {
-            font-style: italic;
-            margin-top: 1rem;
-            color: #f5f5f5;
-        }
+    .produit p {
+      margin: 0 1.5rem 2rem;
+      font-weight: 500;
+      color: #555;
+    }
 
-        .panier-lien {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 1rem;
-            color: #d4af37;
-            text-decoration: none;
-            background-color: #222;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: background-color 0.3s;
-        }
+    .btn-ajouter {
+      display: block;
+      background-color: #d4af37;
+      color: white;
+      padding: 0.8rem 1.7rem;
+      text-align: center;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 1.5rem 2rem;
+      transition: background-color 0.3s;
+    }
 
-        .panier-lien:hover {
-            background-color: #333;
-        }
+    .btn-ajouter:hover {
+      background-color: #b28a27;
+    }
 
-        /* Styles pour la section principale des articles */
-        main#articles {
-            max-width: 1100px;
-            margin: auto;
-            padding: 4rem 1.5rem;
-            /* Vous pouvez mettre un fond ici si vous voulez un fond pour TOUTE la section articles */
-            /* background-image: url('...'); */
-        }
+    footer {
+      text-align: center;
+      background: #111;
+      color: #ccc;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      font-size: 1rem;
+    }
 
-        /* Styles pour les sous-sections à l'intérieur de #articles */
-        main#articles section {
-            padding: 2rem 0;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 2rem;
-             /* Si vous avez un header fixe, ajoutez ceci pour le décalage du défilement */
-             /* Exemple: scroll-margin-top: 100px; ajustez la valeur */
-        }
+    #histoire {
+      background-color: #fffbe6;
+      padding: 4rem 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-top: 4rem;
+    }
 
-         main#articles section:last-child {
-             border-bottom: none;
-             margin-bottom: 0;
-         }
-
-         /* Styles pour limiter la taille des sections (si souhaité, mais peut cacher du contenu) */
-        /* main#articles section {
-             max-height: 600px;
-             overflow: hidden;
-             padding: 2rem 1rem;
-             border-bottom: 1px solid #ccc;
-             margin-bottom: 2rem;
-         } */
-
-
-        /* Styles spécifiques à la sous-section Dior */
-        #dior-collection {
-            background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/diorwallpaper2.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            padding: 20px;
-            color: #d4af37; /* Couleur du texte pour cette section */
-        }
-
-         /* Styles spécifiques à la sous-section Chanel */
-        #chanel-collection {
-            background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/chanelwallpaper.jpg'); /* Exemple d'image Chanel */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            padding: 20px;
-            color: #000; /* Exemple : texte noir sur fond Chanel */
-        }
-
-         /* Styles spécifiques à la sous-section Burberry */
-        #burberry-collection {
-            background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/burberrywallpaper.jpg'); /* Exemple d'image Burberry */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            padding: 20px;
-            color: #5a2b2b; /* Exemple : couleur texte pour Burberry */
-        }
-
-
-        h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        /* Styles pour le menu déroulant */
-        #article-sections-nav {
-            display: block;
-            margin: 0 auto 3rem auto;
-            padding: 0.8rem 1.5rem;
-            font-size: 1.1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: white;
-            cursor: pointer;
-        }
-
-
-        .produits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-        }
-
-        .produit {
-            background: white; /* Note : Le fond blanc des produits pourrait cacher l'image de fond de la section si les produits couvrent toute la zone */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e5e5e5;
-        }
-
-        .produit:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .produit img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-        }
-
-        .produit h3 {
-            margin: 1.5rem;
-            font-size: 1.3rem;
-            color: #1a1a1a;
-        }
-
-        .produit p {
-            margin: 0 1.5rem 2rem;
-            font-weight: 500;
-            color: #555;
-        }
-
-        .btn-ajouter {
-            display: block;
-            background-color: #d4af37;
-            color: white;
-            padding: 0.8rem 1.7rem;
-            text-align: center;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 1.5rem 2rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn-ajouter:hover {
-            background-color: #b28a27;
-        }
-
-        footer {
-            text-align: center;
-            background: #111;
-            color: #ccc;
-            padding: 2rem 1.5rem;
-            margin-top: 4rem;
-            font-size: 1rem;
-        }
-
-        #histoire {
-            background-color: #fffbe6;
-            padding: 4rem 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-top: 4rem;
-        }
-
-        #contact {
-            padding: 4rem 1.5rem;
-            background-color: #f4f0ea;
-            margin-top: 4rem;
-        }
-    </style>
+    #contact {
+      padding: 4rem 1.5rem;
+      background-color: #f4f0ea;
+      margin-top: 4rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="menu-gauche">
-            <a href="#articles">Articles</a>
-            <a href="#histoire">Notre Histoire</a>
-            <a href="#contact">Nous Contacter</a>
+  <header>
+    <div class="menu-gauche">
+      <a href="#articles">Articles</a>
+      <a href="#histoire">Notre Histoire</a>
+      <a href="#contact">Nous Contacter</a>
+    </div>
+    <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
+    <h1>Refashionshop</h1>
+    <p>Vêtements et accessoires de luxe d'occasion</p>
+  </header>
+
+  <main id="articles">
+    <select id="article-sections-nav">
+        <option value="#articles">Toutes les sélections</option> <option value="#dior-collection">Sélection Dior</option>
+        <option value="#chanel-collection">Sélection Chanel</option>
+        <option value="#burberry-collection">Sélection Burberry</option>
+    </select>
+
+  <section id="dior-collection">
+    <h2>Nos Sélections Dior</h2>
+    <div class="produits">
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
+        <h3>Sac Dior Lady</h3>
+        <p>État impeccable - 1 200€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Dior Lady', 1200)">Ajouter au Panier</button>
+      </div>
+
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/robe.jpg" alt="Robe Dior Soirée">
+        <h3>Robe Dior Soirée</h3>
+        <p>Édition limitée - 890€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
+      </div>
+
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/manteau.jpg" alt="Manteau Dior Hiver">
+        <h3>Manteau Dior Hiver</h3>
+        <p>En laine - 650€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Dior Hiver', 650)">Ajouter au Panier</button>
+      </div>
         </div>
-        <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
-        <h1>Refashionshop</h1>
-        <p>Vêtements et accessoires de luxe d'occasion</p>
-    </header>
+  </section>
 
-    <main id="articles">
-        <select id="article-sections-nav">
-            <option value="#articles">Toutes les sélections</option>
-            <option value="#dior-collection">Sélection Dior</option>
-            <option value="#chanel-collection">Sélection Chanel</option>
-            <option value="#burberry-collection">Sélection Burberry</option>
-        </select>
+   <section id="chanel-collection">
+        <h2>Nos Sélections Chanel</h2>
+        <div class="produits">
+            <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/ballerines.jpg" alt="Ballerines Chanel" style="max-width: 100%; height: auto";>
+        <h3>Ballerines Chanel</h3>
+        <p>Excellent état - 350€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Ballerines Chanel', 350)">Ajouter au Panier</button>
+      </div>
 
-        <section id="dior-collection">
-            <h2>Sélection Dior</h2>
-            <div class="produits">
-                 <div class="produit">
-                    <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
-                    <h3>Sac Dior Lady</h3>
-                    <p>État impeccable - 1 200€</p>
-                    <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Dior Lady', 1200)">Ajouter au Panier</button>
-                  </div>
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sacchanel.jpg" alt="Sac Chanel" style="max-width: 100%; height: auto;">
+        <h3>Sac Chanel</h3>
+        <p>Un must have - 1 500€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel', 1500)">Ajouter au Panier</button>
+      </div>
 
-                  <div class="produit">
-                    <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/robe.jpg" alt="Robe Dior Soirée">
-                    <h3>Robe Dior Soirée</h3>
-                    <p>Édition limitée - 890€</p>
-                    <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
-                  </div>
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/tailleur.jpg" alt="Tailleur-jupe Chanel" style="max-width: 100%; height: auto";>
+        <h3>Tailleur-jupe Chanel</h3>
+        <p>So chic ! - 2 000€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Tailleur-jupe Chanel', 2000)">Ajouter au Panier</button>
+      </div>
+        </div>
+  </section>
 
-                   <div class="produit">
-                 <img src="https://media.vogue.fr/photos/5ecd107a0e4825f4c8e24f3c/master/pass/0001-sac-dior-saddle-en-cuir-granule-bleu-nuit-collection-automne-hiver-2020-2021-dior-©-sophie-ventura.jpg" alt="Autre produit Dior">
-                 <h3>Un autre produit Dior</h3>
-                 <p>Comme neuf - 750€</p>
-                 <button class="btn-ajouter" onclick="ajouterAuPanier('Autre produit Dior', 750)">Ajouter au Panier</button>
-               </div>
-            </div>
-        </section>
+    <section id="burberry-collection">
+        <h2>Nos Sélections Burberry</h2>
+        <div class="produits">
+            <div class="produit">
+         <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/trench.jpg" alt="Trench Héritage Burberry">
+        <h3>Trench Héritage Burberry</h3>
+        <p>Splendide - 900€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Trench Héritage Burberry', 900)">Ajouter au Panier</button>
+      </div>
 
-        <section id="chanel-collection">
-            <h2>Sélection Chanel</h2>
-            <div class="produits">
-                <div class="produit">
-                         <img src="https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg" alt="Sac Chanel Classique">
-                         <h3>Sac Chanel Classique</h3>
-                         <p>État impeccable - 1 200€</p>
-                         <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
-                     </div>
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/duffle-coat.jpg" alt="Duffle-coat Burberry">
+        <h3>Duffle-coat Burberry</h3>
+        <p>En laine - 950€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Duffle-coat Burberry', 950)">Ajouter au Panier</button>
+      </div>
 
-                <div class="produit">
-                    <img src="https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_auto,w_600/FSH-1678486316029-mode-p-fall-winter-2023-24-lookbook-lg-rtw-fw23-look01-1463903828.jpg" alt="Veste Chanel">
-                         <h3>Veste Chanel</h3>
-                         <p>Très bon état - 950€</p>
-                         <button class="btn-ajouter" onclick="ajouterAuPanier('Veste Chanel', 950)">Ajouter au Panier</button>
-                     </div>
-                 <div class="produit">
-                     <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/ballerines.jpg" alt="Ballerines Chanel">
-                     <h3>Ballerines Chanel</h3>
-                     <p>Excellent état - 350€</p>
-                     <button class="btn-ajouter" onclick="ajouterAuPanier('Ballerines Chanel', 350)">Ajouter au Panier</button>
-                   </div>
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/boutons.jpg" alt="Boutons de manchette Burberry">
+        <h3>Boutons de manchette Burberry</h3>
+        <p>100% argent fin - 150€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Boutons de manchette Burberry', 150)">Ajouter au Panier</button>
+      </div>
+    </div>
+  </section>
 
-                   <div class="produit">
-                     <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sacchanel.jpg" alt="Sac Chanel">
-                     <h3>Sac Chanel</h3>
-                     <p>Un must have - 1 500€</p>
-                     <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel', 1500)">Ajouter au Panier</button>
-                   </div>
+</main>
+  
+  <!-- Section Histoire -->
+  <section id="histoire">
+    <h2 style="text-align:center; font-size:2.5rem;">Notre Histoire</h2>
+    <p style="max-width: 900px; margin: auto; color: #333;">
+      Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète.
+      Fondée en 2025 par un trio d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée
+      comme une référence pour tous ceux qui souhaitent allier style et conscience écologique.
+      <br><br>
+      Dès nos débuts, nous avons été animés par une volonté simple mais ambitieuse : offrir une seconde vie aux trésors de la haute couture.
+      Trop souvent, des pièces d’exception sont reléguées au fond d’un dressing ou jetées alors qu’elles ont encore tant à offrir.
+      Nous avons voulu leur redonner l’éclat qu’elles méritent.
+      <br><br>
+      Chaque article sélectionné sur Refashionshop est rigoureusement authentifié, inspecté et restauré si nécessaire.
+      Nous collaborons avec des experts du luxe et des stylistes afin de vous garantir des vêtements et accessoires à la fois élégants,
+      durables et porteurs d’une histoire unique.
+      <br><br>
+      Mais Refashionshop, c’est aussi une communauté. Une famille de passionnés qui croient que la mode ne doit plus être synonyme de gaspillage.
+      Nous croyons en une consommation plus réfléchie, en une élégance responsable, en des choix durables.
+      <br><br>
+      Notre engagement ne s'arrête pas à la vente : nous soutenons des actions solidaires, promouvons la réparation,
+      le don et la valorisation des savoir-faire artisanaux. Parce que chaque pièce de luxe mérite une seconde chance,
+      et chaque client mérite de porter une histoire.
+      <br><br>
+      Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
+    </p>
+  </section>
 
-                   <div class="produit">
-                     <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/tailleur.jpg" alt="Tailleur-jupe Chanel">
-                     <h3>Tailleur-jupe Chanel</h3>
-                     <p>So chic ! - 2 000€</p>
-                     <button class="btn-ajouter" onclick="ajouterAuPanier('Tailleur-jupe Chanel', 2000)">Ajouter au Panier</button>
-                   </div>
-            </div>
-        </section>
+  <section id="contact">
+    <h2 style="text-align:center;">Nous Contacter</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      Une question, une suggestion ou une collaboration ?<br/>
+      Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
+    </p>
+  </section>
 
-        <section id="burberry-collection">
-            <h2>Sélection Burberry</h2>
-            <div class="produits">
-                <div class="produit">
-                         <img src="https://cdn.jolicloset.com/img/items/2023/01/15/1753178/large/burberry-manteau-en-laine-beige.jpg" alt="Manteau Burberry Hiver">
-                         <h3>Manteau Burberry Hiver</h3>
-                         <p>En laine - 650€</p>
-                         <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
-                     </div>
-                 <div class="produit">
-                       <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/trench.jpg" alt="Trench Héritage Burberry">
-                      <h3>Trench Héritage Burberry</h3>
-                      <p>Splendide - 900€</p>
-                      <button class="btn-ajouter" onclick="ajouterAuPanier('Trench Héritage Burberry', 900)">Ajouter au Panier</button>
-                    </div>
+  <footer>
+    © 2025 Refashionshop — Élégance & Seconde Vie
+  </footer>
 
-                    <div class="produit">
-                      <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/duffle-coat.jpg" alt="Duffle-coat Burberry">
-                      <h3>Duffle-coat Burberry</h3>
-                      <p>En laine - 950€</p>
-                      <button class="btn-ajouter" onclick="ajouterAuPanier('Duffle-coat Burberry', 950)">Ajouter au Panier</button>
-                    </div>
-
-                    <div class="produit">
-                      <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/boutons.jpg" alt="Boutons de manchette Burberry">
-                      <h3>Boutons de manchette Burberry</h3>
-                      <p>100% argent fin - 150€</p>
-                      <button class="btn-ajouter" onclick="ajouterAuPanier('Boutons de manchette Burberry', 150)">Ajouter au Panier</button>
-                    </div>
-            </div>
-        </section>
-
-    </main>
-
-    <section id="histoire">
-        <h2 style="text-align:center; font-size:2.5rem;">Notre Histoire</h2>
-        <p style="max-width: 900px; margin: auto; color: #333;">
-            Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète.
-            Fondée en 2025 par un trio d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée
-            comme une référence pour tous ceux qui souhaitent allier style et conscience écologique.
-            <br><br>
-            Dès nos débuts, nous avons été animés par une volonté simple mais ambitieuse : offrir une seconde vie aux trésors de la haute couture.
-            Trop souvent, des pièces d’exception sont reléguées au fond d’un dressing ou jetées alors qu’elles ont encore tant à offrir.
-            Nous avons voulu leur redonner l’éclat qu’elles méritent.
-            <br><br>
-            Chaque article sélectionné sur Refashionshop est rigoureusement authentifié, inspecté et restauré si nécessaire.
-            Nous collaborons avec des experts du luxe et des stylistes afin de vous garantir des vêtements et accessoires à la fois élégants,
-            durables et porteurs d’une histoire unique.
-            <br><br>
-            Mais Refashionshop, c’est aussi une communauté. Une famille de passionnés qui croient que la mode ne doit plus être synonyme de gaspillage.
-            Nous croyons en une consommation plus réfléchie, en une élégance responsable, en des choix durables.
-            <br><br>
-            Notre engagement ne s'arrête pas à la vente : nous soutenons des actions solidaires, promouvons la réparation,
-            le don et la valorisation des savoir-faire artisanaux. Parce que chaque pièce de luxe mérite une seconde chance,
-            et chaque client mérite de porter une histoire.
-            <br><br>
-            Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
-        </p>
-    </section>
-
-    <section id="contact">
-        <h2 style="text-align:center;">Nous Contacter</h2>
-        <p style="text-align:center; max-width:700px; margin:auto;">
-            Une question, une suggestion ou une collaboration ?<br/>
-            Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
-        </p>
-    </section>
-
-    <footer>
-        © 2025 Refashionshop — Élégance & Seconde Vie
-    </footer>
 
     <script>
         // Fonction pour ajouter un article au panier
