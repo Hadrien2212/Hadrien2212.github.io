@@ -10,22 +10,50 @@
       font-family: 'Georgia', serif;
       background-color: #f4f0ea;
       color: #1a1a1a;
-      padding: 2rem;
     }
 
-    h1 {
+    header {
+      background-color: #111;
+      color: #d4af37;
+      padding: 2rem 1rem;
       text-align: center;
-      font-size: 3rem;
-      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
+
+    .panier-lien {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 1rem;
+      color: #d4af37;
+      text-decoration: none;
+      background-color: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .panier-lien:hover {
+      background-color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
     }
 
     .article {
       background-color: white;
-      margin: 1rem auto;
+      margin: 1rem 0;
       padding: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      max-width: 700px;
       font-size: 1.2rem;
     }
 
@@ -89,74 +117,9 @@
   </style>
 </head>
 <body>
-  <h1>Votre Panier</h1>
-  <div id="panier-container"></div>
-  <div class="total" id="total"></div>
-  <div class="vider">
-    <button onclick="viderPanier()">🗑️ Vider le panier</button>
-  </div>
-  <a class="btn-retour" href="index.html">← Continuer mes achats</a>
 
-  <script>
-    function afficherPanier() {
-      const panier = JSON.parse(localStorage.getItem('cart')) || [];
-      const container = document.getElementById('panier-container');
-      const totalDiv = document.getElementById('total');
-
-      container.innerHTML = '';
-      let total = 0;
-
-      if (panier.length === 0) {
-        container.innerHTML = "<p style='text-align:center;'>Votre panier est vide.</p>";
-        totalDiv.textContent = '';
-        mettreAJourCompteur();
-        return;
-      }
-
-      panier.forEach((item, index) => {
-        const article = document.createElement('div');
-        article.classList.add('article');
-        article.innerHTML = `
-          <img src="${item.image}" alt="${item.nom}">
-          <div class="article-info">
-            ${item.nom} - ${item.prix}€
-            <button onclick="supprimerArticle(${index})" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#aa3333;">✖</button>
-          </div>
-        `;
-        container.appendChild(article);
-        total += item.prix;
-      });
-
-      totalDiv.textContent = `Total : ${total.toFixed(2)} €`;
-      mettreAJourCompteur();
-    }
-
-    function viderPanier() {
-      if (confirm("Voulez-vous vraiment vider votre panier ?")) {
-        localStorage.removeItem('cart');
-        afficherPanier();
-      }
-    }
-
-    function supprimerArticle(index) {
-      let panier = JSON.parse(localStorage.getItem('cart')) || [];
-      panier.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(panier));
-      afficherPanier();
-    }
-
-    function mettreAJourCompteur() {
-      const panier = JSON.parse(localStorage.getItem('cart')) || [];
-      const compteur = document.getElementById('cart-count');
-      if (compteur) {
-        compteur.textContent = panier.length;
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', afficherPanier);
-  </script>
-</body>
-</html>
+  <header>
+    <a class="panier-lien" href="panier.html">🛒 Panier (<span id="cart-count
 
 
 
