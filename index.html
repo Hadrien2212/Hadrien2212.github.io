@@ -1,347 +1,273 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Refashionshop</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Style de la page */
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #f4f0ea;
-      color: #1a1a1a;
-    }
-
-    header {
-      background-color: #111;
-      color: #d4af37;
-      padding: 3rem 1rem 2rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .menu-gauche {
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
-    }
-
-    .menu-gauche a {
-      color: #d4af37;
-      text-decoration: none;
-      margin-right: 1.5rem;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .menu-gauche a:hover {
-      text-decoration: underline;
-    }
-
-    header h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      font-style: italic;
-      margin-top: 1rem;
-      color: #f5f5f5;
-    }
-
-    .panier-lien {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 1rem;
-      color: #d4af37;
-      text-decoration: none;
-      background-color: #222;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      transition: background-color 0.3s;
-    }
-
-    .panier-lien:hover {
-      background-color: #333;
-    }
-
-    /* Styles pour la section principale des articles */
-    main#articles { /* Cible spécifiquement le main avec l'id articles */
-      max-width: 1100px;
-      margin: auto;
-      padding: 4rem 1.5rem;
-   }
-
-    /* Styles pour les sous-sections à l'intérieur de #articles */
-    main#articles section {
-        padding: 2rem 0; 
-        border-bottom: 1px solid #ccc; 
-        margin-bottom: 2rem; 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Refashionshop</title>
+  <link rel="stylesheet" href="styles.css"> <style>
+    /* Style de la page */
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f4f0ea;
+      color: #1a1a1a;
     }
 
-    main#articles section:last-child {
-        border-bottom: none; 
-        margin-bottom: 0;
+    header {
+      background-color: #111;
+      color: #d4af37;
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      position: relative;
     }
 
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-    }
-
-    /* Styles pour le menu déroulant */
-    #article-sections-nav {
-        display: block; 
-        margin: 0 auto 3rem auto; 
-        padding: 0.8rem 1.5rem;
-        font-size: 1.1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: white;
-        cursor: pointer;
+    .menu-gauche {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
     }
 
+    .menu-gauche a {
+      color: #d4af37;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
 
-    .produits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-    }
+    .menu-gauche a:hover {
+      text-decoration: underline;
+    }
 
-    .produit {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #e5e5e5;
-    }
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
 
-    .produit:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
+    header p {
+      font-style: italic;
+      margin-top: 1rem;
+      color: #f5f5f5;
+    }
 
-    .produit img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
+    .panier-lien {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 1rem;
+      color: #d4af37;
+      text-decoration: none;
+      background-color: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
 
-    .produit h3 {
-      margin: 1.5rem;
-      font-size: 1.3rem;
-      color: #1a1a1a;
-    }
+    .panier-lien:hover {
+      background-color: #333;
+    }
 
-    .produit p {
-      margin: 0 1.5rem 2rem;
-      font-weight: 500;
-      color: #555;
-    }
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 1.5rem;
+    }
 
-    .btn-ajouter {
-      display: block;
-      background-color: #d4af37;
-      color: white;
-      padding: 0.8rem 1.7rem;
-      text-align: center;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 0 1.5rem 2rem;
-      transition: background-color 0.3s;
-    }
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
 
-    .btn-ajouter:hover {
-      background-color: #b28a27;
-    }
+    .produits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+    }
 
-    footer {
-      text-align: center;
-      background: #111;
-      color: #ccc;
-      padding: 2rem 1.5rem;
-      margin-top: 4rem;
-      font-size: 1rem;
-    }
+     #articles {
+        background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/diorwallpaper2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px;
+        color: #d4af37;
 
-    #histoire {
-      background-color: #fffbe6;
-      padding: 4rem 1.5rem;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      margin-top: 4rem;
-    }
+    .produit {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e5e5e5;
+    }
 
-    #contact {
-      padding: 4rem 1.5rem;
-      background-color: #f4f0ea;
-      margin-top: 4rem;
-    }
-  </style>
+    .produit:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .produit img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .produit h3 {
+      margin: 1.5rem;
+      font-size: 1.3rem;
+      color: #1a1a1a;
+    }
+
+    .produit p {
+      margin: 0 1.5rem 2rem;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .btn-ajouter {
+      display: block;
+      background-color: #d4af37;
+      color: white;
+      padding: 0.8rem 1.7rem;
+      text-align: center;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 1.5rem 2rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn-ajouter:hover {
+      background-color: #b28a27;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: #ccc;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      font-size: 1rem;
+    }
+
+    #histoire {
+      background-color: #fffbe6;
+      padding: 4rem 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-top: 4rem;
+    }
+
+    #contact {
+      padding: 4rem 1.5rem;
+      background-color: #f4f0ea;
+      margin-top: 4rem;
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <div class="menu-gauche">
-      <a href="#articles">Articles</a>
-      <a href="#histoire">Notre Histoire</a>
-      <a href="#contact">Nous Contacter</a>
-    </div>
-    <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
-    <h1>Refashionshop</h1>
-    <p>Vêtements et accessoires de luxe d'occasion</p>
-  </header>
+  <header>
+    <div class="menu-gauche">
+      <a href="#articles">Articles</a>
+      <a href="#histoire">Notre Histoire</a>
+      <a href="#contact">Nous Contacter</a>
+    </div>
+    <a class="panier-lien" href="panier.html">🛒 Voir le panier (<span id="cart-count">0</span>)</a>
+    <h1>Refashionshop</h1>
+    <p>Vêtements et accessoires de luxe d'occasion</p>
+  </header>
 
-  <main id="articles">
-    <select id="article-sections-nav">
-        <option value="#articles">Toutes les sélections</option> <option value="#dior-collection">Sélection Dior</option>
-        <option value="#chanel-collection">Sélection Chanel</option>
-        <option value="#burberry-collection">Sélection Burberry</option>
-    </select>
+  <main id="articles">
+    <h2>Nos Sélections Dior</h2>
+    <div class="produits">
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
+        <h3>Sac Dior Lady</h3>
+        <p>État impeccable - 1 200€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Dior Lady', 1200)">Ajouter au Panier</button>
+      </div>
 
-    <section id="dior-collection">
-        <h2>Sélection Dior</h2>
-        <div class="produits">
-            <div class="produit">
-                <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/sac.jpg" alt="Sac Dior Lady">
-                <h3>Sac Dior Lady</h3>
-                <p>État impeccable - 1 200€</p>
-                <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Dior Lady', 1200)">Ajouter au Panier</button>
-            </div>
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/robe.jpg" alt="Robe Dior Soirée">
+        <h3>Robe Dior Soirée</h3>
+        <p>Édition limitée - 890€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
+      </div>
 
-            <div class="produit">
-                <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/robe.jpg" alt="Robe Dior Soirée">
-                <h3>Robe Dior Soirée</h3>
-                <p>Édition limitée - 890€</p>
-                <button class="btn-ajouter" onclick="ajouterAuPanier('Robe Dior Soirée', 890)">Ajouter au Panier</button>
-            </div>
+      <div class="produit">
+        <img src="https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/manteau.jpg" alt="Manteau Dior Hiver">
+        <h3>Manteau Dior Hiver</h3>
+        <p>En laine - 650€</p>
+        <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Dior Hiver', 650)">Ajouter au Panier</button>
+      </div>
+    </div>
+  </main>
 
-             <div class="produit">
-        <img src="https://media.vogue.fr/photos/5ecd107a0e4825f4c8e24f3c/master/pass/0001-sac-dior-saddle-en-cuir-granule-bleu-nuit-collection-automne-hiver-2020-2021-dior-©-sophie-ventura.jpg" alt="Autre produit Dior">
-        <h3>Un autre produit Dior</h3>
-        <p>Comme neuf - 750€</p>
-        <button class="btn-ajouter" onclick="ajouterAuPanier('Autre produit Dior', 750)">Ajouter au Panier</button>
-      </div>
-        </div>
-    </section>
+  <!-- Section Histoire -->
+  <section id="histoire">
+    <h2 style="text-align:center; font-size:2.5rem;">Notre Histoire</h2>
+    <p style="max-width: 900px; margin: auto; color: #333;">
+      Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète.
+      Fondée en 2025 par un trio d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée
+      comme une référence pour tous ceux qui souhaitent allier style et conscience écologique.
+      <br><br>
+      Dès nos débuts, nous avons été animés par une volonté simple mais ambitieuse : offrir une seconde vie aux trésors de la haute couture.
+      Trop souvent, des pièces d’exception sont reléguées au fond d’un dressing ou jetées alors qu’elles ont encore tant à offrir.
+      Nous avons voulu leur redonner l’éclat qu’elles méritent.
+      <br><br>
+      Chaque article sélectionné sur Refashionshop est rigoureusement authentifié, inspecté et restauré si nécessaire.
+      Nous collaborons avec des experts du luxe et des stylistes afin de vous garantir des vêtements et accessoires à la fois élégants,
+      durables et porteurs d’une histoire unique.
+      <br><br>
+      Mais Refashionshop, c’est aussi une communauté. Une famille de passionnés qui croient que la mode ne doit plus être synonyme de gaspillage.
+      Nous croyons en une consommation plus réfléchie, en une élégance responsable, en des choix durables.
+      <br><br>
+      Notre engagement ne s'arrête pas à la vente : nous soutenons des actions solidaires, promouvons la réparation,
+      le don et la valorisation des savoir-faire artisanaux. Parce que chaque pièce de luxe mérite une seconde chance,
+      et chaque client mérite de porter une histoire.
+      <br><br>
+      Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
+    </p>
+  </section>
 
-    <section id="chanel-collection">
-        <h2>Sélection Chanel</h2>
-        <div class="produits">
-            <div class="produit">
-                <img src="https://cdn.collectorsquare.com/media/collector/407622/1_407622_a.jpg" alt="Sac Chanel Classique">
-                <h3>Sac Chanel Classique</h3>
-                <p>État impeccable - 1 200€</p>
-                <button class="btn-ajouter" onclick="ajouterAuPanier('Sac Chanel Classique', 1200)">Ajouter au Panier</button>
-            </div>
+  <section id="contact">
+    <h2 style="text-align:center;">Nous Contacter</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      Une question, une suggestion ou une collaboration ?<br/>
+      Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
+    </p>
+  </section>
 
-            <div class="produit">
-                <img src="https://www.chanel.com/images/q_auto,f_auto,fl_lossy,dpr_auto,w_600/FSH-1678486316029-mode-p-fall-winter-2023-24-lookbook-lg-rtw-fw23-look01-1463903828.jpg" alt="Veste Chanel">
-                <h3>Veste Chanel</h3>
-                <p>Très bon état - 950€</p>
-                <button class="btn-ajouter" onclick="ajouterAuPanier('Veste Chanel', 950)">Ajouter au Panier</button>
-            </div>
-            </div>
-    </section>
+  <footer>
+    © 2025 Refashionshop — Élégance & Seconde Vie
+  </footer>
 
-    <section id="burberry-collection">
-        <h2>Sélection Burberry</h2>
-        <div class="produits">
-            <div class="produit">
-                <img src="https://cdn.jolicloset.com/img/items/2023/01/15/1753178/large/burberry-manteau-en-laine-beige.jpg" alt="Manteau Burberry Hiver">
-                <h3>Manteau Burberry Hiver</h3>
-                <p>En laine - 650€</p>
-                <button class="btn-ajouter" onclick="ajouterAuPanier('Manteau Burberry Hiver', 650)">Ajouter au Panier</button>
-            </div>
-            </div>
-    </section>
-
-  </main>
-
-    <section id="histoire">
-    <h2 style="text-align:center; font-size:2.5rem;">Notre Histoire</h2>
-    <p style="max-width: 900px; margin: auto; color: #333;">
-      Refashionshop est né d'une passion commune pour la mode, l’élégance intemporelle et le respect de notre planète.
-      Fondée en 2025 par un trio d’amis passionnés par le luxe et l’écoresponsabilité, notre boutique s’est rapidement imposée
-      comme une référence pour tous ceux qui souhaitent allier style et conscience écologique.
-      <br><br>
-      Dès nos débuts, nous avons été animés par une volonté simple mais ambitieuse : offrir une seconde vie aux trésors de la haute couture.
-      Trop souvent, des pièces d’exception sont reléguées au fond d’un dressing ou jetées alors qu’elles ont encore tant à offrir.
-      Nous avons voulu leur redonner l’éclat qu’elles méritent.
-      <br><br>
-      Chaque article sélectionné sur Refashionshop est rigoureusement authentifié, inspecté et restauré si nécessaire.
-      Nous collaborons avec des experts du luxe et des stylistes afin de vous garantir des vêtements et accessoires à la fois élégants,
-      durables et porteurs d’une histoire unique.
-      <br><br>
-      Mais Refashionshop, c’est aussi une communauté. Une famille de passionnés qui croient que la mode ne doit plus être synonyme de gaspillage.
-      Nous croyons en une consommation plus réfléchie, en une élégance responsable, en des choix durables.
-      <br><br>
-      Notre engagement ne s'arrête pas à la vente : nous soutenons des actions solidaires, promouvons la réparation,
-      le don et la valorisation des savoir-faire artisanaux. Parce que chaque pièce de luxe mérite une seconde chance,
-      et chaque client mérite de porter une histoire.
-      <br><br>
-      Merci de faire partie de cette aventure. Ensemble, redéfinissons la mode de demain.
-    </p>
-  </section>
-
-  <section id="contact">
-    <h2 style="text-align:center;">Nous Contacter</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      Une question, une suggestion ou une collaboration ?<br/>
-      Écrivez-nous à <a href="mailto:contact@refashionshop.fr">contact@refashionshop.fr</a> ou suivez-nous sur Instagram : <a href="#">@refashionshop</a>
-    </p>
-  </section>
-
-  <footer>
-    © 2025 Refashionshop — Élégance & Seconde Vie
-  </footer>
-
-  <script>
+  <script>
     // Fonction pour ajouter un article au panier
     function ajouterAuPanier(nom, prix) {
-        let panier = JSON.parse(localStorage.getItem('cart')) || [];
-        panier.push({ nom: nom, prix: prix });
-        localStorage.setItem('cart', JSON.stringify(panier));
-        mettreAJourCompteur();
-        alert(nom + " a été ajouté au panier !");
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.push({ nom: nom, prix: prix });
+      localStorage.setItem('cart', JSON.stringify(panier));
+      mettreAJourCompteur();
+      alert(nom + " a été ajouté au panier !");
     }
 
     // Fonction pour mettre à jour le compteur de panier
     function mettreAJourCompteur() {
-        const panier = JSON.parse(localStorage.getItem('cart')) || [];
-        document.getElementById('cart-count').textContent = panier.length;
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').textContent = panier.length;
     }
 
     // Mise à jour du compteur dès que la page est chargée
-    document.addEventListener('DOMContentLoaded', () => {
-        mettreAJourCompteur();
-
-        // ****** Nouveau code pour le menu déroulant ******
-        const sectionsNav = document.getElementById('article-sections-nav');
-
-        sectionsNav.addEventListener('change', function() {
-            const targetId = this.value; // Récupère l'ID de la section cible
-            const targetElement = document.querySelector(targetId); // Trouve l'élément par son ID
-
-            if (targetElement) {
-                   targetElement.scrollIntoView({
-                    behavior: 'smooth' // Ajoute une animation de défilement doux
-                });
-            }
-        });
-        // ****** Fin du nouveau code ******
-    });
-  </script>
+    document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
+  </script>
 
 </body>
 </html>
 
+
+                              
