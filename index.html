@@ -346,21 +346,7 @@
     // Mise à jour du compteur dès que la page est chargée
     document.addEventListener('DOMContentLoaded', mettreAJourCompteur);
   </script>
-
-  const sectionsNav = document.getElementById('article-sections-nav');
-
-        sectionsNav.addEventListener('change', function() {
-            const targetId = this.value; 
-            const targetElement = document.querySelector(targetId); 
-
-            if (targetElement) {
-                // Fait défiler la page jusqu'à l'élément cible
-                targetElement.scrollIntoView({
-                    behavior: 'smooth' 
-                });
-            }
-        });
-        
+      
 </body>
 </html>
 
