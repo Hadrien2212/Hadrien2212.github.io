@@ -2,7 +2,14 @@
 
 body {
   font-family: Arial, sans-serif;
-  }
+  #articles {
+    background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/refashionsacchanel.jpeg'); 
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center;
+    padding: 20px; 
+    color: #fff; 
+}
 
 h1 {
   color: #333;
@@ -41,11 +48,4 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-#articles {
-    background-image: url('https://raw.githubusercontent.com/Hadrien2212/Hadrien2212.github.io/main/images/refashionsacchanel.jpeg'); 
-    background-size: cover;
-    background-repeat: no-repeat; 
-    background-position: center;
-    padding: 20px; 
-    color: #fff; 
-}
+
