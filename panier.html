@@ -10,83 +10,207 @@
       font-family: 'Georgia', serif;
       background-color: #f4f0ea;
       color: #1a1a1a;
-      padding: 2rem;
     }
 
-    h1 {
+    header {
+      background-color: #111;
+      color: #d4af37;
+      padding: 3rem 1rem 2rem;
       text-align: center;
-      font-size: 3rem;
-      margin-bottom: 2rem;
     }
 
-    .article {
-      background-color: white;
-      margin: 1rem auto;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      max-width: 700px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1.2rem;
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      letter-spacing: 2px;
     }
 
-    .total {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-top: 3rem;
+    header p {
+      font-style: italic;
+      margin-top: 1rem;
+      color: #f5f5f5;
+    }
+
+    .menu-gauche a {
+      color: #d4af37;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-size: 1.1rem;
       font-weight: bold;
     }
 
-    .btn-retour {
-      display: block;
-      margin: 3rem auto 0;
-      padding: 0.7rem 1.5rem;
-      font-size: 1.1rem;
-      background-color: #d4af37;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      text-align: center;
-      width: fit-content;
+    .menu-gauche a:hover {
+      text-decoration: underline;
     }
 
-    .btn-retour:hover {
-      background-color: #b28a27;
-    }
-
-    .vider {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .vider button {
-      padding: 0.5rem 1rem;
+    .panier-lien {
       font-size: 1rem;
-      background-color: #aa3333;
+      color: #d4af37;
+      text-decoration: none;
+      background-color: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .panier-lien:hover {
+      background-color: #333;
+    }
+
+    .produits-panier {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 1.5rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .article-panier {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e5e5e5;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .article-panier img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .article-panier h3 {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      color: #1a1a1a;
+    }
+
+    .article-panier p {
+      font-weight: 500;
+      color: #555;
+    }
+
+    .btn-supprimer {
+      display: inline-block;
+      background-color: #e74c3c;
       color: white;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 1rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
     }
 
-    .vider button:hover {
-      background-color: #881c1c;
+    .btn-supprimer:hover {
+      background-color: #c0392b;
+    }
+
+    .vider-panier {
+      display: block;
+      text-align: center;
+      background-color: #f39c12;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      margin-top: 2rem;
+      transition: background-color 0.3s;
+    }
+
+    .vider-panier:hover {
+      background-color: #e67e22;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: #ccc;
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
-  <h1>Votre Panier</h1>
-  <div id="panier-container"></div>
-  <div class="total" id="total"></div>
-  <div class="vider">
-    <button onclick="viderPanier()">🗑️ Vider le panier</button>
-  </div>
 
-  <!-- 🔁 Lien modifié vers les articles -->
-  <a class="btn-retour" href="index.html#articles">← Retour
+  <header>
+    <div class="menu-gauche">
+      <a href="index.html">Articles</a>
+      <a href="#contact">Nous Contacter</a>
+    </div>
+    <h1>Votre Panier</h1>
+  </header>
+
+  <main class="produits-panier">
+    <h2>Articles dans votre Panier</h2>
+
+    <div id="panier-content"></div>
+
+    <button class="vider-panier" onclick="viderPanier()">Vider le Panier</button>
+  </main>
+
+  <footer>
+    © 2025 Refashionshop — Élégance & Seconde Vie
+  </footer>
+
+  <script>
+    // Fonction pour afficher les articles du panier
+    function afficherPanier() {
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      const panierContent = document.getElementById('panier-content');
+      
+      panierContent.innerHTML = ""; // Réinitialiser le contenu du panier
+
+      if (panier.length === 0) {
+        panierContent.innerHTML = "<p style='text-align: center;'>Votre panier est vide.</p>";
+        return;
+      }
+
+      panier.forEach((article, index) => {
+        const articleDiv = document.createElement('div');
+        articleDiv.classList.add('article-panier');
+        
+        articleDiv.innerHTML = `
+          <img src="https://via.placeholder.com/300x200" alt="${article.nom}">
+          <h3>${article.nom}</h3>
+          <p>Prix: ${article.prix}€</p>
+          <button class="btn-supprimer" onclick="supprimerArticle(${index})">Supprimer</button>
+        `;
+        
+        panierContent.appendChild(articleDiv);
+      });
+    }
+
+    // Fonction pour supprimer un article du panier
+    function supprimerArticle(index) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.splice(index, 1); // Supprimer l'article à l'index donné
+      localStorage.setItem('cart', JSON.stringify(panier));
+      afficherPanier();
+    }
+
+    // Fonction pour vider tout le panier
+    function viderPanier() {
+      localStorage.removeItem('cart');
+      afficherPanier();
+    }
+
+    // Appeler afficherPanier quand la page est prête
+    document.addEventListener('DOMContentLoaded', afficherPanier);
+  </script>
+
+</body>
+</html>
+
 
 
 
