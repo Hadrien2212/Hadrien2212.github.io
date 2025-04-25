@@ -26,29 +26,21 @@
       border-radius: 8px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       max-width: 700px;
-      display: flex;
-      align-items: center;
       font-size: 1.2rem;
     }
 
     .article img {
-      width: 120px;
-      height: auto;
+      width: 100%;
+      max-height: 300px;
       object-fit: cover;
-      margin-right: 1rem;
-      border-radius: 8px;
+      border-radius: 5px;
+      margin-bottom: 1rem;
     }
 
     .article-info {
-      flex-grow: 1;
-    }
-
-    .supprimer {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: #aa3333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .total {
@@ -100,11 +92,9 @@
   <h1>Votre Panier</h1>
   <div id="panier-container"></div>
   <div class="total" id="total"></div>
-
   <div class="vider">
     <button onclick="viderPanier()">🗑️ Vider le panier</button>
   </div>
-
   <a class="btn-retour" href="index.html">← Continuer mes achats</a>
 
   <script>
@@ -119,26 +109,26 @@
       if (panier.length === 0) {
         container.innerHTML = "<p style='text-align:center;'>Votre panier est vide.</p>";
         totalDiv.textContent = '';
+        mettreAJourCompteur();
         return;
       }
 
       panier.forEach((item, index) => {
         const article = document.createElement('div');
         article.classList.add('article');
-
         article.innerHTML = `
-          <img src="${item.image}" alt="${item.nom}" />
+          <img src="${item.image}" alt="${item.nom}">
           <div class="article-info">
-            <strong>${item.nom}</strong><br>${item.prix.toFixed(2)} €
+            ${item.nom} - ${item.prix}€
+            <button onclick="supprimerArticle(${index})" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#aa3333;">✖</button>
           </div>
-          <button class="supprimer" onclick="supprimerArticle(${index})">✖</button>
         `;
-
         container.appendChild(article);
         total += item.prix;
       });
 
       totalDiv.textContent = `Total : ${total.toFixed(2)} €`;
+      mettreAJourCompteur();
     }
 
     function viderPanier() {
@@ -148,7 +138,26 @@
       }
     }
 
-    function supprimerArticle(index)
+    function supprimerArticle(index) {
+      let panier = JSON.parse(localStorage.getItem('cart')) || [];
+      panier.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(panier));
+      afficherPanier();
+    }
+
+    function mettreAJourCompteur() {
+      const panier = JSON.parse(localStorage.getItem('cart')) || [];
+      const compteur = document.getElementById('cart-count');
+      if (compteur) {
+        compteur.textContent = panier.length;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', afficherPanier);
+  </script>
+</body>
+</html>
+
 
 
 
